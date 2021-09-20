@@ -1,3 +1,4 @@
+using FluentMigrator.Runner;
 using Hotel.Infra.Data.ContextDb;
 using Hotel.Infra.Data.Migrations.Extensions;
 using Microsoft.AspNetCore.Builder;
@@ -12,6 +13,7 @@ using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace HotelPr_API
@@ -31,11 +33,22 @@ namespace HotelPr_API
       services.AddSingleton<DapperContext>();
       services.AddSingleton<DataBase>();
 
+
+      services.AddFluentMigratorCore()
+              .ConfigureRunner(c => c.AddSqlServer2016()
+              .WithGlobalConnectionString(Configuration.GetConnectionString("SqlConnection"))
+              .ScanIn(Assembly.GetExecutingAssembly()).For.All())
+            .AddLogging(config => config.AddFluentMigratorConsole());
+
+
+      services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
       services.AddControllers();
       services.AddSwaggerGen(c =>
       {
         c.SwaggerDoc("v1", new OpenApiInfo { Title = "HotelPr_API", Version = "v1" });
       });
+
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,6 +71,8 @@ namespace HotelPr_API
       {
         endpoints.MapControllers();
       });
+
+      
     }
   }
 }

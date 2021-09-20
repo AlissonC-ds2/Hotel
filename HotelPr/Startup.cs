@@ -24,6 +24,8 @@ namespace HotelPr
     public void ConfigureServices(IServiceCollection services)
     {
 
+
+      services.AddMvc();
       services.AddRazorPages();
     }
 
