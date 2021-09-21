@@ -25,14 +25,6 @@ namespace HotelPrMVC
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
-      var mappingConfig = new MapperConfiguration(mc =>
-      {
-        mc.AddProfile(new ClienteProfile());
-      });
-
-      IMapper mapper = mappingConfig.CreateMapper();
-      services.AddSingleton(mapper);
-
 
       services.AddControllersWithViews();
     }
@@ -60,9 +52,11 @@ namespace HotelPrMVC
       app.UseEndpoints(endpoints =>
       {
         endpoints.MapControllerRoute(
-                  name: "default",
-                  pattern: "{controller=Home}/{action=Index}/{id?}");
+          name: "areas",
+          pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+        );
       });
+
     }
   }
 }

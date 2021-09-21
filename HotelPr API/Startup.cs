@@ -1,6 +1,11 @@
+using AutoMapper;
 using FluentMigrator.Runner;
+using Hotel.Domain.Interfaces;
+using Hotel.Domain.Profiles;
 using Hotel.Infra.Data.ContextDb;
 using Hotel.Infra.Data.Migrations.Extensions;
+using Hotel.Infra.Data.Migrations.MigrationTables;
+using Hotel.Infra.Data.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -34,14 +39,29 @@ namespace HotelPr_API
       services.AddSingleton<DataBase>();
 
 
+      //Fazendo a injeção de depêndencia dos repository
+      services.AddScoped<IRepository, Repository>();
+
       services.AddFluentMigratorCore()
               .ConfigureRunner(c => c.AddSqlServer2016()
               .WithGlobalConnectionString(Configuration.GetConnectionString("SqlConnection"))
-              .ScanIn(Assembly.GetExecutingAssembly()).For.All())
+              .ScanIn(typeof(AddLogTable).Assembly).For.Migrations())
             .AddLogging(config => config.AddFluentMigratorConsole());
 
 
-      services.AddAutoMapper(Assembly.GetExecutingAssembly());
+      //services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
+
+      // Verificar se funciona o método acima ^
+      var mappingConfig = new MapperConfiguration(mc =>
+      {
+        mc.AddProfile(new ClienteProfile());
+      });
+
+      IMapper mapper = mappingConfig.CreateMapper();
+      services.AddSingleton(mapper);
+
+
 
       services.AddControllers();
       services.AddSwaggerGen(c =>

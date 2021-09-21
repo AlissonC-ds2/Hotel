@@ -15,4 +15,16 @@
     <ProjectReference Include="..\Hotel.Infra.Data\Hotel.Infra.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\" />
+    <Folder Include="Areas\Cliente\Controllers\" />
+    <Folder Include="Areas\Cliente\Data\" />
+    <Folder Include="Areas\Cliente\Models\" />
+    <Folder Include="Areas\Cliente\Views\" />
+    <Folder Include="Areas\Financeiro\Controllers\" />
+    <Folder Include="Areas\Financeiro\Data\" />
+    <Folder Include="Areas\Financeiro\Models\" />
+    <Folder Include="Areas\Financeiro\Views\" />
+  </ItemGroup>
+
 </Project>

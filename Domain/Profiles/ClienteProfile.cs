@@ -14,8 +14,11 @@ namespace Hotel.Domain.Profiles
 
     public ClienteProfile()
     {
-      CreateMap<Cliente, ClienteModel>();
+      CreateMap<Cliente, ClienteModel>().ReverseMap();
     }
+
+
+
 
   }
 }

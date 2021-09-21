@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Hotel.Domain.Model
 {
-  public class ClienteModel 
+  public class ClienteModel : BaseModel
   {
     public string Nome { get; set; }
     public string Endereco { get; set; }

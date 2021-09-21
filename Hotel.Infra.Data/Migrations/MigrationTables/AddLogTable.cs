@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hotel.Infra.Data.Migrations
+namespace Hotel.Infra.Data.Migrations.MigrationTables
 {
+
   [Migration(202106280001)]
-  public class InitialTables_202106280001 : Migration
+  public class AddLogTable : Migration
   {
     public override void Down()
     {
@@ -18,14 +19,13 @@ namespace Hotel.Infra.Data.Migrations
     public override void Up()
     {
       Create.Table("Cliente")
-        .WithColumn("Id").AsGuid().NotNullable().PrimaryKey()
+        .WithColumn("Id").AsInt64().PrimaryKey().Identity()
         .WithColumn("Nome").AsString(50).NotNullable()
-        .WithColumn("DataNasc").AsDateTime().NotNullable()
-        .WithColumn("Endereco").AsString(50)
+        .WithColumn("DataNasc").AsDateTime().Nullable()
+        .WithColumn("Endereco").AsString(50).Nullable()
         .WithColumn("Nacionalidade").AsString(50).NotNullable()
         .WithColumn("Cidade").AsString(50).NotNullable();
     }
-
 
 
   }

@@ -7,7 +7,6 @@
   <ItemGroup>
     <Folder Include="Dto\" />
     <Folder Include="Enums\" />
-    <Folder Include="Interfaces\" />
     <Folder Include="IServices\" />
     <Folder Include="Mapper\" />
     <Folder Include="Service\" />
@@ -16,6 +15,7 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="Dapper" Version="2.0.90" />
     <PackageReference Include="FluentMigrator" Version="3.3.0" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="3.0.0" />
   </ItemGroup>
