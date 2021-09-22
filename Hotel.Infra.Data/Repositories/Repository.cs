@@ -29,6 +29,8 @@ namespace Hotel.Infra.Data.Repositories
       using (var connection = _context.CreateConnection())
       {
         await connection.ExecuteAsync(query, parameters);
+
+        connection.Dispose();
       }
 
       throw new NotImplementedException();
