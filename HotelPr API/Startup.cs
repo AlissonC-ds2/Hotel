@@ -49,6 +49,12 @@ namespace HotelPr_API
             .AddLogging(config => config.AddFluentMigratorConsole());
 
 
+      services.AddCors(c =>
+      {
+        c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
+      });
+
+
       //services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 
@@ -84,6 +90,8 @@ namespace HotelPr_API
       app.UseHttpsRedirection();
 
       app.UseRouting();
+
+      app.UseCors(options => options.AllowAnyOrigin());
 
       app.UseAuthorization();
 

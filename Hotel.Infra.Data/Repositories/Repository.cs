@@ -6,6 +6,7 @@ using Hotel.Domain.Model;
 using Hotel.Infra.Data.ContextDb;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -47,6 +48,15 @@ namespace Hotel.Infra.Data.Repositories
       throw new NotImplementedException();
     }
 
+    public List<T> GetAll<T>(string sql)
+    {
+      
+      using (var connection = _context.CreateConnection())
+      {
+        return connection.Query<T>(sql).ToList();
+      }
 
+
+    }
   }
 }

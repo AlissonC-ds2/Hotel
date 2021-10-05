@@ -3,6 +3,7 @@ using Dapper;
 using Hotel.Domain.Entities;
 using Hotel.Domain.Interfaces;
 using Hotel.Domain.Model;
+using Hotel.Infra.Data.ContextDb;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -13,19 +14,20 @@ using System.Threading.Tasks;
 
 namespace HotelPr_API.Controllers
 {
-  [Route("api/[controller]")]
+  [Route("api/cliente")]
   [ApiController]
   public class ClienteController : ControllerBase
   {
     private readonly IMapper _mapper;
     private readonly IRepository _repository;
+    private readonly DapperContext _context;
 
-    public ClienteController(IMapper mapper, IRepository repository)
+    public ClienteController(IMapper mapper, IRepository repository, DapperContext context)
     {
       _mapper = mapper;
       _repository = repository;
+      _context = context;
     }
-
 
     [HttpPost]
     public async Task Post(ClienteModel model)
@@ -43,5 +45,21 @@ namespace HotelPr_API.Controllers
 
       _repository.Post(query, parameters);
     }
+
+
+    [HttpGet]
+    public async Task<IReadOnlyList<Cliente>> GetAll() 
+    {
+      var sql = "SELECT * FROM Cliente";
+
+      using (var connection = _context.CreateConnection())
+      {
+        connection.Open();
+        var result = await connection.QueryAsync<Cliente>(sql);
+        return result.ToList();
+      }
+    }
+
+
   }
 }
