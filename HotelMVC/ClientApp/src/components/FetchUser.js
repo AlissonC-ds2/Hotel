@@ -89,17 +89,16 @@ export class FetchUser extends Component {
               <td> {c.cidade}</td>
               <td> {c.endereco}</td>
               <td> {c.nacionalidade}</td>
+              <td>
+                <button className="btn btn-sucess" onClick={(id) => this.handleEdit(c.id)}>Edit</button>
+                <button className="btn btn-danger" onClick={(id) => this.handleDelete(c.id)}>Delete</button>
+              </td>
             </tr>
           )}
         </tbody>
       </table>
     );
   }
-
-
-
-
-
 
 
   render() {
@@ -124,7 +123,6 @@ export class FetchUser extends Component {
       </div>
       );
   }
-
 
 
   async populaClienteData() {
