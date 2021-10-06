@@ -84,24 +84,28 @@ export class AddCliente extends Component {
           <input type="hidden" name="id" value={this.state.cliente.id} />
         </div>
         <div className="form-group row">
+          <label for="inputNome" class="col-sm-1 control-label">Nome</label>
           <div className="col-md-6">
-            <input className="form-control" type="text" name="nome" defaultValue={this.state.cliente.nome} required />
+            <input className="form-control" placeholder="Nome" type="text" name="nome" defaultValue={this.state.cliente.nome} required />
           </div>
         </div>
 
         <div className="form-group row">
+          <label for="inputCidade" class="col-sm-1 control-label">Cidade</label>
           <div className="col-md-5">
             <input className="form-control" type="text" name="cidade" defaultValue={this.state.cliente.cidade} required />
           </div>
         </div>
 
         <div className="form-group row">
+          <label for="inputEndereco" class="col-sm-1 control-label">Endereço</label>
           <div className="col-md-4">
             <input className="form-control" type="text" name="endereco" defaultValue={this.state.cliente.endereco} required />
           </div>
         </div>
 
         <div className="form-group row">
+          <label for="inputNacionalidade" class="col-sm-2 control-label">Nacionalidade</label>
           <div className="col-md-3">
             <input className="form-control" type="text" name="nacionalidade" defaultValue={this.state.cliente.nacionalidade} required />
           </div>
