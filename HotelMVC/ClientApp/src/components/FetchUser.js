@@ -1,4 +1,5 @@
-﻿import React, { Component } from "react"
+﻿import { Button } from "bootstrap";
+import React, { Component } from "react"
 import { Link } from 'react-router-dom'
 
 export class FetchUser extends Component {
@@ -17,7 +18,7 @@ export class FetchUser extends Component {
 
 
   static handleEdit(id) {
-    window.location.href = "/usuario/put" + id;
+    window.location.href = "/cliente/put" + id;
   }
 
 
@@ -61,6 +62,8 @@ export class FetchUser extends Component {
             <th>Cidade</th>
             <th>Endereco</th>
             <th>Nacionalidade</th>
+            <th>Editar</th>
+            <th>Deletar</th>
           </tr>
         </thead>
         <tbody style={body}>
@@ -71,6 +74,13 @@ export class FetchUser extends Component {
               <td> {c.cidade}</td>
               <td> {c.endereco}</td>
               <td> {c.nacionalidade}</td>
+              <td>
+                <button className="btn btn-success" onClick={(id) => this.handleEdit(c.id)}>Editar</button> &nbsp;
+              </td>
+              <td>
+                <button className="btn btn-danger" onClick={(id) => this.handleDelete(c.id)}>Delete</button>
+              </td>
+
             </tr>
           )}
         </tbody>

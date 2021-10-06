@@ -30,7 +30,7 @@ namespace HotelPr_API.Controllers
     }
 
     [HttpPost]
-    public async Task Post(ClienteModel model)
+    public async Task Post([FromForm]ClienteModel model)
     {
       var cliente = _mapper.Map<Cliente>(model);
 
@@ -58,8 +58,7 @@ namespace HotelPr_API.Controllers
         var result = await connection.QueryAsync<Cliente>(sql);
         return result.ToList();
       }
+
     }
-
-
   }
 }

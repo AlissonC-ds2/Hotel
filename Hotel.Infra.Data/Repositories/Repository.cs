@@ -34,7 +34,6 @@ namespace Hotel.Infra.Data.Repositories
         connection.Dispose();
       }
 
-      throw new NotImplementedException();
     }
 
 
