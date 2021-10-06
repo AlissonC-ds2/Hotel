@@ -34,44 +34,26 @@ export class FetchUser extends Component {
    
   }
 
-  //static renderClienteTabela(clientes) {
 
-  //  return (
-  //    <table className='table table-striped' aria-labelledby="tableLabel">
-  //      <thead>
-  //        <tr>
-  //          <th>Código</th>
-  //          <th>Nome</th>
-  //          <th>Cidade</th>
-  //          <th>Endereco</th>
-  //          <th>Nacionalidade</th>
-  //          <th></th>
-  //        </tr>
-  //      </thead>
-  //      <body>
-  //        {clientes.map(c =>
-  //          <tr key={c.id}>
-  //            <td> { c.id} </td>
-  //            <td> {c.nome}</td>
-  //            <td> {c.cidade}</td>
-  //            <td> {c.endereco}</td>
-  //            <td> {c.nacionalidade}</td>
-  //            <td>
-  //              <button className="btn btn-sucess" onClick={(id) => this.handleEdit(c.id)}>Edit</button> &nbsp;
-  //              <button className="btn btn-danger" onClick={(id) => this.handleDelete(c.id)}>Delete</button>;
-  //            </td>
-
-  //          </tr>
-
-  //          )}
-  //      </body>
-  //    </table>
-  //    );
-  //}
 
   static renderClienteTabela(clientes) {
+    const body = {
+      margin: '30px',
+      background: '#ffffff',
+      color: 'red',
+    };
+
+    const table = {
+      width: '100%',
+      margin: '2.4rem',
+      background: '#20262e',
+      color: '#fff',
+      overflow: 'hidden',
+    };
+
+
     return (
-      <table className='table table-striped' aria-labelledby="tabelLabel">
+      <table className='table table-striped' aria-labelledby="tabelLabel" style={table}>
         <thead>
           <tr>
             <th>Código</th>
@@ -81,7 +63,7 @@ export class FetchUser extends Component {
             <th>Nacionalidade</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody style={body}>
           {clientes.map(c =>
             <tr key={c.id}>
               <td> {c.id} </td>
@@ -89,10 +71,6 @@ export class FetchUser extends Component {
               <td> {c.cidade}</td>
               <td> {c.endereco}</td>
               <td> {c.nacionalidade}</td>
-              <td>
-                <button className="btn btn-sucess" onClick={(id) => this.handleEdit(c.id)}>Edit</button>
-                <button className="btn btn-danger" onClick={(id) => this.handleDelete(c.id)}>Delete</button>
-              </td>
             </tr>
           )}
         </tbody>

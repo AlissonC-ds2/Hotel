@@ -6,7 +6,6 @@ import { FetchData } from './components/FetchData';
 import { Counter } from './components/Counter';
 import { FetchUser } from './components/FetchUser';
 
-
 import './custom.css'
 
 export default class App extends Component {
