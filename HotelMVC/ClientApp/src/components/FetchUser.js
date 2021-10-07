@@ -18,7 +18,8 @@ export class FetchUser extends Component {
 
 
   static handleEdit(id) {
-    window.location.href = "/cliente/put" + id;
+    debugger;
+    window.location.href = `/add-cliente?id=${id}`;
   }
 
 
@@ -115,7 +116,7 @@ export class FetchUser extends Component {
 
   async populaClienteData() {
     debugger;
-    const response = await fetch("https://localhost:44344/api/cliente");
+    const response = await fetch("https://localhost:44344/api/cliente/GetAll");
     const data = await response.json();
 
     this.setState({ clientes: data, loading: false })

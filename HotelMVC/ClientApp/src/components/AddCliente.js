@@ -14,6 +14,7 @@ export class Cliente {
 
 export class AddCliente extends Component {
   constructor(props) {
+    debugger;
     super(props);
     this.state = { title: "", cliente: new Cliente(), loading: true };
     this.inicialize();
@@ -25,10 +26,14 @@ export class AddCliente extends Component {
 
   async inicialize() {
     debugger;
-    let id = this.props.match.params["id"];
+
+    const search = this.props.location.search; // returns the URL query String
+    const params = new URLSearchParams(search);
+    let id = parseInt(params.get('id'));
+
 
     if (id > 0) {
-      const response = await fetch("https://localhost:44344/api/cliente" + id);
+      const response = await fetch('https://localhost:44344/api/cliente/' + id);
       const data = await response.json();
 
       this.setState({ title: "Edição", cliente: data, loading: false });
@@ -36,8 +41,6 @@ export class AddCliente extends Component {
     }
 
     this.state = { title: "Cadastrar", cliente: new Cliente(), loading: false };
-
-
   }
 
 

@@ -47,7 +47,7 @@ namespace HotelPr_API.Controllers
     }
 
 
-    [HttpGet]
+    [HttpGet("GetAll")]
     public async Task<IReadOnlyList<Cliente>> GetAll() 
     {
       var sql = "SELECT * FROM Cliente";
@@ -60,5 +60,23 @@ namespace HotelPr_API.Controllers
       }
 
     }
+
+
+    [HttpGet("{id:long}")]
+    public async Task<IActionResult> Get(long id)
+    {
+      string sql = "SELECT * FROM Cliente WHERE Id =" + id;
+
+      using (var connection = _context.CreateConnection())
+      {
+        connection.Open();
+       
+        var cliente = connection.QueryFirstOrDefault<Cliente>(sql, id);
+
+        return Ok(_mapper.Map<Cliente, ClienteModel>(cliente));
+      }
+
+    }
+
   }
 }
