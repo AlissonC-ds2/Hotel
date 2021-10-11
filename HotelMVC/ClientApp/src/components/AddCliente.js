@@ -81,8 +81,18 @@ export class AddCliente extends Component {
   }
 
   renderCreateForm() {
+    const forms = {
+      background: '#15172b',
+      border: '200px',
+      sizing: 'border-box',
+      height: '500px',
+      padding: '20px',
+      width: '100%',
+    };
+
+
     return (
-      <form onSubmit={this.handleSave}>
+      <form onSubmit={this.handleSave} style={ forms }>
         <div className="form-group row">
           <input type="hidden" name="id" value={this.state.cliente.id} />
         </div>
