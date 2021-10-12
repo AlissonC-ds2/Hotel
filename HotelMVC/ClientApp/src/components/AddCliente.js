@@ -8,6 +8,7 @@ export class Cliente {
     this.cidade = "";
     this.endereco = "";
     this.nacionalidade = "";
+    this.dataNasc = "";
   }
 }
 
@@ -92,7 +93,7 @@ export class AddCliente extends Component {
 
 
     return (
-      <form onSubmit={this.handleSave} style={ forms }>
+      <form onSubmit={this.handleSave}>
         <div className="form-group row">
           <input type="hidden" name="id" value={this.state.cliente.id} />
         </div>
@@ -111,6 +112,13 @@ export class AddCliente extends Component {
         </div>
 
         <div className="form-group row">
+          <label for="inputNacionalidade" class="col-sm-2 control-label">Data de Nascimento</label>
+          <div className="col-md-3">
+            <input className="form-control" type="date" name="dataNasc" defaultValue={this.state.cliente.dataNasc} required />
+          </div>
+        </div>
+        
+        <div className="form-group row">
           <label for="inputEndereco" class="col-sm-1 control-label">Endereço</label>
           <div className="col-md-4">
             <input className="form-control" type="text" name="endereco" defaultValue={this.state.cliente.endereco} required />
@@ -128,6 +136,10 @@ export class AddCliente extends Component {
           <button type="submit" className="btn btn-success" value={this.state.cliente.id}>Salvar</button>
           <button className="btn btn-danger" onClick={this.handleCancel}>Cancelar</button>
         </div>
+
+
+
+
       </form>
     );
   }

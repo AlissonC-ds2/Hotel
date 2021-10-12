@@ -4,7 +4,6 @@ using Hotel.Domain.Interfaces;
 using Hotel.Domain.Profiles;
 using Hotel.Infra.Data.ContextDb;
 using Hotel.Infra.Data.Migrations.Extensions;
-using Hotel.Infra.Data.Migrations.MigrationTables;
 using Hotel.Infra.Data.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -45,7 +44,7 @@ namespace HotelPr_API
       services.AddFluentMigratorCore()
               .ConfigureRunner(c => c.AddSqlServer2016()
               .WithGlobalConnectionString(Configuration.GetConnectionString("SqlConnection"))
-              .ScanIn(typeof(AddLogTable).Assembly).For.Migrations())
+              .ScanIn(Assembly.GetExecutingAssembly()).For.All())
             .AddLogging(config => config.AddFluentMigratorConsole());
 
 
@@ -59,15 +58,11 @@ namespace HotelPr_API
 
 
       // Verificar se funciona o método acima ^
-      var mappingConfig = new MapperConfiguration(mc =>
-      {
-        mc.AddProfile(new ClienteProfile());
-      });
+      var configuration = new MapperConfiguration(cfg => cfg.AddMaps("Hotel.Domain"));
 
-      IMapper mapper = mappingConfig.CreateMapper();
+      IMapper mapper = configuration.CreateMapper();
+
       services.AddSingleton(mapper);
-
-
 
       services.AddControllers();
       services.AddSwaggerGen(c =>

@@ -15,12 +15,10 @@ namespace Hotel.Infra.Data.Repositories
 {
   public class Repository : IRepository
   {
-    private readonly IMapper _mapper;
     private readonly DapperContext _context;
 
-    public Repository(DapperContext context, IMapper mapper)
+    public Repository(DapperContext context)
     {
-      _mapper = mapper;
       _context = context;
     }
 

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hotel.Infra.Data.Migrations.MigrationTables
+namespace HotelPr_API
 {
 
   [Migration(202106280001)]
