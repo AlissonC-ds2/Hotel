@@ -19,8 +19,8 @@ namespace HotelPr_API
       Create.Table("Estado")
       .WithColumn("Id").AsInt64().PrimaryKey().Identity()
       .WithColumn("Nome").AsString(50).NotNullable()
-      .WithColumn("Sigla").AsString(50).NotNullable();
-      
+      .WithColumn("Sigla").AsInt64().NotNullable();
     }
+
   }
 }

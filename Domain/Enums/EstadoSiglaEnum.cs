@@ -9,59 +9,59 @@ namespace Hotel.Domain.Enums
 {
   public enum EstadoSiglaEnum
   {
-    [Description("Acre")]
+    [Description("AC")]
     AC = 0,
-    [Description("Alagoas")]
+    [Description("AL")]
     AL = 1,
-    [Description("Amapá")]
+    [Description("AP")]
     AP = 2,
-    [Description("Amazonas")]
+    [Description("AM")]
     AM = 3,
-    [Description("Bahia")]
+    [Description("BH")]
     BA = 4,
-    [Description("Ceará")]
+    [Description("CE")]
     CE = 5,
-    [Description("Distrito Federal")]
+    [Description("DF")]
     DF = 6,
-    [Description("Espirito Santo")]
+    [Description("ES")]
     ES = 7,
-    [Description("Goiás")]
+    [Description("GO")]
     GO = 8,
-    [Description("Maranhão")]
+    [Description("MA")]
     MA = 9 ,
-    [Description("Mato Grosso")]
+    [Description("MT")]
     MT = 10,
-    [Description("Mato Grosso do Sul")]
+    [Description("MS")]
     MS = 11,
-    [Description("Minas Gerais")]
+    [Description("MG")]
     MG = 12,
-    [Description("Pará")]
+    [Description("PA")]
     PA = 13,
-    [Description("Paraiba")]
+    [Description("PB")]
     PB = 14,
-    [Description("Paraná")]
+    [Description("PR")]
     PR = 15,
-    [Description("Pernambuco")]
+    [Description("PE")]
     PE = 16,
-    [Description("Piauí")]
+    [Description("PI")]
     PI = 17,
-    [Description("Rio de Janeiro")]
+    [Description("RJ")]
     RJ = 18,
-    [Description("Rio Grande do Norte")]
+    [Description("RN")]
     RN = 19,
-    [Description("Rio Grande do Sul")]
+    [Description("RS")]
     RS = 20,
-    [Description("Rondônia")]
+    [Description("RO")]
     RO = 21,
-    [Description("Roraima")]
+    [Description("RR")]
     RR = 22,
-    [Description("Santa Catarina")]
+    [Description("SC")]
     SC = 23,
-    [Description("São Paulo")]
+    [Description("SP")]
     SP = 24,
-    [Description("Sergipe")]
+    [Description("SE")]
     SE = 25,
-    [Description("Tocantis")]
+    [Description("TO")]
     TO = 26
 
   }
