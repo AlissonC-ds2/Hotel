@@ -9,14 +9,14 @@ namespace Hotel.Domain.Entities
 {
 	public class Clima : BaseEntity
 	{
-		public double Temperatura { get; set; }
-		public double TemperaturaMaxima { get; set; }
-		public double TemperaturaMinima { get; set; }
-		public string Descricao { get; set; }
-		public string Umidade { get; set; }
-		public double Velocidade { get; set; }
-		public Cidade Cidade { get; set; }
-		public double PressaoAtm { get; set; }
-		public ETipoClima TipoClima { get; set; }
+		public virtual double Temperatura { get; set; }
+		public virtual double TemperaturaMaxima { get; set; }
+		public virtual double TemperaturaMinima { get; set; }
+		public virtual string Descricao { get; set; }
+		public virtual string Umidade { get; set; }
+		public virtual double Velocidade { get; set; }
+		public virtual Cidade Cidade { get; set; }
+		public virtual double PressaoAtm { get; set; }
+		public virtual ETipoClima TipoClima { get; set; }
 	}
 }
