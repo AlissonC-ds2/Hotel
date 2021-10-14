@@ -1,6 +1,5 @@
 using AutoMapper;
 using FluentMigrator.Runner;
-using Hotel.Domain.Interfaces;
 using Hotel.Infra.Data.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

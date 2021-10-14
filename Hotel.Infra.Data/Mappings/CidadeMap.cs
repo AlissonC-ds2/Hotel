@@ -20,7 +20,5 @@ namespace Hotel.Infra.Data.Mappings
 
       Table("Cidade");
     }
-
-
   }
 }
