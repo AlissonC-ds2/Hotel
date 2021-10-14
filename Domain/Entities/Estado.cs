@@ -10,7 +10,7 @@ namespace Hotel.Domain.Entities
 {
   public class Estado : BaseEntity
   {
-    public string Nome { get; set; }
-    public EstadoSiglaEnum Sigla { get; set; }
+    public virtual string Nome { get; set; }
+    public virtual EstadoSiglaEnum Sigla { get; set; }
   }
 }

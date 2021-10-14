@@ -11,8 +11,8 @@ namespace Hotel.Domain.Model
   [AutoMap(typeof(Cidade), ReverseMap = true)]
   public class CidadeModel : BaseModel
   {
-    public string Nome { get; set; }
-    public long EstadoId { get; set; }
+    public virtual string Nome { get; set; }
+    public virtual long EstadoId { get; set; }
 
   }
 }

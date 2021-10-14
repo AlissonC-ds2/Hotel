@@ -1,10 +1,7 @@
 using AutoMapper;
 using FluentMigrator.Runner;
 using Hotel.Domain.Interfaces;
-using Hotel.Domain.Profiles;
-using Hotel.Infra.Data.ContextDb;
-using Hotel.Infra.Data.Migrations.Extensions;
-using Hotel.Infra.Data.Repositories;
+using Hotel.Infra.Data.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -34,40 +31,32 @@ namespace HotelPr_API
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
-      services.AddSingleton<DapperContext>();
-      services.AddSingleton<DataBase>();
 
 
-      //Fazendo a injeção de depêndencia dos repository
-      services.AddScoped<IRepository, Repository>();
-
-      services.AddFluentMigratorCore()
-              .ConfigureRunner(c => c.AddSqlServer2016()
-              .WithGlobalConnectionString(Configuration.GetConnectionString("SqlConnection"))
-              .ScanIn(Assembly.GetExecutingAssembly()).For.All())
-            .AddLogging(config => config.AddFluentMigratorConsole());
+      //Pegar os tipos de repository
+      //var types = from type in (typeof(Repository).Assembly).GetTypes()
+      //            where type.FullName.StartsWith("SesmoWebCore.Infra.Data.Repositories")
+      //            where type.Name.EndsWith("Repository")
+      //            select type;
 
 
-      services.AddCors(c =>
-      {
-        c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
-      });
+      //Assembly.GetExecutingAssembly().GetExportedTypes() <------ busca todos os assemblyes fora do contexto atual
+      services.AddNHibernate(Configuration.GetConnectionString("SqlConnection"));
 
-
-      //services.AddAutoMapper(Assembly.GetExecutingAssembly());
-
-
-      // Verificar se funciona o método acima ^
       var configuration = new MapperConfiguration(cfg => cfg.AddMaps("Hotel.Domain"));
-
       IMapper mapper = configuration.CreateMapper();
-
       services.AddSingleton(mapper);
+
 
       services.AddControllers();
       services.AddSwaggerGen(c =>
       {
         c.SwaggerDoc("v1", new OpenApiInfo { Title = "HotelPr_API", Version = "v1" });
+      });
+
+      services.AddCors(c =>
+      {
+        c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
       });
 
     }

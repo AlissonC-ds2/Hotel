@@ -9,8 +9,8 @@ namespace Hotel.Domain.Entities
 {
   public class Cidade : BaseEntity
   {
-    public string Nome { get; set; }
-    public Estado Estado { get; set; }
+    public virtual string Nome { get; set; }
+    public virtual Estado Estado { get; set; }
 
   }
 }
