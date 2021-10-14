@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <Folder Include="Dto\" />
+    <Folder Include="Interfaces\" />
     <Folder Include="IServices\" />
     <Folder Include="Mapper\" />
     <Folder Include="Service\" />
