@@ -42,7 +42,7 @@ namespace Hotel.Infra.Data.Repositories
       return lstCidades;
     }
 
-    public async Task<List<CidadeEstadoDto>> GetAllCidadadesEstado(int unidadeId)
+    public async Task<List<CidadeEstadoDto>> GetAllCidadadesEstado(long unidadeId)
     {
       Estado estadoAlias = null;
       Cidade cidadeAlias = null;

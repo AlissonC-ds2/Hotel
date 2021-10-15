@@ -42,14 +42,8 @@ namespace HotelPr_API.Controllers
     => Ok(await _cidadeRepository.GetAllCidadades());
 
     [HttpGet("getall")]
-    public async Task<IActionResult> GetAllCidadesEstado(int unidadeId)
+    public async Task<IActionResult> GetAllCidadesEstado(long unidadeId)
     => Ok(await _cidadeRepository.GetAllCidadadesEstado(unidadeId));
-
-
-
-    [HttpGet("{unidadeId:int}")]
-    public async Task<IActionResult> Get(int unidadeId)
-     => Ok(await _cidadeRepository.GetAllCidadadesEstado(unidadeId));
 
 
   }
