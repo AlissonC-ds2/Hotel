@@ -41,18 +41,19 @@ export class FetchClima extends Component {
       });
   }
 
-  handleChange(event) { 
+  async handleChange(event) { 
     debugger;
     let abc = this.state.estados;
     abc.id = event.target.value;
-    unidadeId = abc.id;
+    unidadeId = parseInt(abc.id);
 
     this.setState({ abc: abc });
 
     let teste = this.state.cidades;
 
     if (unidadeId != 0) {
-      fetch('https://localhost:44344/api/cidade/getall')
+
+      fetch('https://localhost:44344/api/cidade/' + unidadeId)
         .then(response => response.json())
         .then(data => {
           this.setState({ cidades: data });
