@@ -2,6 +2,9 @@
 import React, { Component } from "react"
 import { Link } from 'react-router-dom'
 
+
+let unidadeId = 0;
+
 export class Cidade {
   constructor() {
     this.id = 0;
@@ -20,13 +23,41 @@ export class Estado {
 export class FetchClima extends Component {
   static displayName = "Climas";
 
-  constructor() {
-    super();
+
+  constructor(props) {
+    debugger;
+    super(props);
     this.state = { clima: [], loading: true, estados: [new Estado], cidades: [new Cidade] }
+
+    this.handleChange = this.handleChange.bind(this); 
   }
 
   componentDidMount() {
     this.populaClimaData();
+    fetch('https://localhost:44344/api/estado/getall')
+      .then(response => response.json())
+      .then(data => {
+        this.setState({ estados: data });
+      });
+  }
+
+  handleChange(event) { 
+    debugger;
+    let abc = this.state.estados;
+    abc.id = event.target.value;
+    unidadeId = abc.id;
+
+    this.setState({ abc: abc });
+
+    let teste = this.state.cidades;
+
+    if (unidadeId != 0) {
+      fetch('https://localhost:44344/api/cidade/getall')
+        .then(response => response.json())
+        .then(data => {
+          this.setState({ cidades: data });
+        });
+    }
   }
 
   static renderCidadeTabela(cidades) {
@@ -46,7 +77,7 @@ export class FetchClima extends Component {
   }
 
   render() {
-
+    debugger;
     const combobox = {
       width: '200px',
       height: '100px',
@@ -63,21 +94,21 @@ export class FetchClima extends Component {
         <br></br>
 
         <div style={combobox}>
-          <label for="combobox">Estados: </label>
-          <select>
+          <label>Estados: </label>
+          <select onChange={this.handleChange}>
             <option disabled selected>Selecione um estado</option>
             {this.state.estados.map(x =>
-              <option key={x.id}>{x.nome}</option>
+              <option key={x.id} value={x.id}>{x.nome}</option>
             )}
 
           </select>
         </div>
         <div style={combobox}>
-          <label for="combobox">Cidades: </label>
-          <select>
+          <label>Cidades: </label>
+          <select onChange={this.handleChange}>
             <option disabled selected>Selecione uma cidade</option>
             {this.state.cidades.map(x =>
-              <option key={x.id}>{x.nome}{x.estadoId}</option>
+              <option key={x.id} value={x.id}>{x.nome}</option>
             )}
 
           </select>

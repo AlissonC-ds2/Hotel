@@ -9,6 +9,7 @@ namespace Hotel.Domain.Interfaces
 {
   public interface ICidadeRepository
   {
-    public Task<List<CidadeEstadoDto>> GetAllCidadadesEstado();
+    public Task<List<CidadeEstadoDto>> GetAllCidadades();
+    public Task<List<CidadeEstadoDto>> GetAllCidadadesEstado(long unidadeId);
   }
 }
