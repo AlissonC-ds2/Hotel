@@ -1,5 +1,6 @@
 using AutoMapper;
 using FluentMigrator.Runner;
+using Hotel.Domain.Interfaces;
 using Hotel.Infra.Data.Extensions;
 using Hotel.Infra.Data.Interfaces;
 using Hotel.Infra.Data.Repositories;
@@ -42,6 +43,8 @@ namespace HotelPr_API
       //            select type;
 
       services.AddScoped<IRepository, Repository>();
+      services.AddScoped<IEstadoRepository, EstadoRepository>();
+
       services.AddTransient<BaseController>();
       //Assembly.GetExecutingAssembly().GetExportedTypes() <------ busca todos os assemblyes fora do contexto atual
       services.AddNHibernate(Configuration.GetConnectionString("SqlConnection"));

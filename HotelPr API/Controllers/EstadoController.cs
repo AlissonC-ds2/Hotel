@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Hotel.Domain.Entities;
+using Hotel.Domain.Interfaces;
 using Hotel.Domain.Model;
 using Hotel.Infra.Data.Interfaces;
 using Microsoft.AspNetCore.Http;
@@ -16,10 +17,12 @@ namespace HotelPr_API.Controllers
 	public class EstadoController : ControllerBase
 	{
 		private readonly BaseController _baseController;
+		private readonly IEstadoRepository _estadoRepository;
 
-		public EstadoController(BaseController baseController)
+		public EstadoController(BaseController baseController, IEstadoRepository estadoRepository)
 		{
 			_baseController = baseController;
+			_estadoRepository = estadoRepository;
 		}
 
 
@@ -36,6 +39,13 @@ namespace HotelPr_API.Controllers
 		[HttpDelete("id:int")]
 		public async Task<IActionResult> Delete(int id)
 		=> await _baseController.Delete<Estado>(id);
+
+
+
+		[HttpGet("getall")]
+		public async Task<IActionResult> Get()
+		=> Ok(await _estadoRepository.GetAllEstados());
+
 
 	}
 }
