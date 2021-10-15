@@ -38,7 +38,7 @@ export class FetchCidade extends Component {
 
 
 
-  static renderCidadeTabela(clientes) {
+  static renderCidadeTabela(cidades) {
     const body = {
       margin: '30px',
       background: '#ffffff',
@@ -68,7 +68,7 @@ export class FetchCidade extends Component {
           </tr>
         </thead>
         <tbody style={body}>
-          {clientes.map(c =>
+          {cidades.map(c =>
             <tr key={c.id}>
               <td> {c.id} </td>
               <td> {c.nome}</td>

@@ -6,6 +6,7 @@ import { FetchData } from './components/FetchData';
 import { Counter } from './components/Counter';
 import { FetchUser } from './components/FetchUser';
 import { FetchCidade } from './components/FetchCidade';
+import { FetchClima } from './components/FetchClima';
 import { AddCliente } from './components/AddCliente';
 import { AddCidade } from './components/AddCidade';
 
@@ -24,6 +25,7 @@ export default class App extends Component {
         <Route path='/fetch-data' component={FetchData} />
         <Route path='/fetch-user' component={FetchUser} />
         <Route path='/fetch-cidade' component={FetchCidade} />
+        <Route path='/fetch-clima' component={FetchClima} />
         <Route path='/add-cliente' component={AddCliente} />
         <Route path='/add-cidade' component={AddCidade} />
         <Route path='/cliente/put/:id' component={AddCliente} />
