@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace HotelPr_API.Controllers
 {
-  [Route("api/[controller]")]
+  [Route("api/cidade")]
   [ApiController]
   public class CidadeController : ControllerBase
   {
