@@ -13,11 +13,12 @@ export class Cliente {
 }
 
 
+
 export class AddCliente extends Component {
   constructor(props) {
     debugger;
     super(props);
-    this.state = { title: "", cliente: new Cliente(), loading: true };
+    this.state = { title: "", cliente: new Cliente(), loading: true};
     this.inicialize();
 
     this.handleSave = this.handleSave.bind(this);
@@ -82,16 +83,6 @@ export class AddCliente extends Component {
   }
 
   renderCreateForm() {
-    const forms = {
-      background: '#15172b',
-      border: '200px',
-      sizing: 'border-box',
-      height: '500px',
-      padding: '20px',
-      width: '100%',
-    };
-
-
     return (
       <form onSubmit={this.handleSave}>
         <div className="form-group row">
@@ -144,5 +135,14 @@ export class AddCliente extends Component {
     );
   }
 
+
+
+  async populaClienteData() {
+    debugger;
+    const response = await fetch("https://localhost:44344/api/cliente/GetAll");
+    const data = await response.json();
+
+    this.setState({ clientes: data, loading: false })
+  }
 
 }
