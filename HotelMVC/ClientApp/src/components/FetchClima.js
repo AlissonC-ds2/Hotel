@@ -2,16 +2,62 @@
 import React, { Component } from "react"
 import { Link } from 'react-router-dom'
 
+
+let unidadeId = 0;
+
+export class Cidade {
+  constructor() {
+    this.id = 0;
+    this.nome = "";
+    this.estadoId = 0;
+  }
+}
+
+export class Estado {
+  constructor() {
+    this.id = 0;
+    this.nome = "";
+  }
+}
+
 export class FetchClima extends Component {
   static displayName = "Climas";
 
-  constructor() {
-    super();
-    this.state = { clima: [], loading: true }
+
+  constructor(props) {
+    debugger;
+    super(props);
+    this.state = { clima: [], loading: true, estados: [new Estado], cidades: [new Cidade] }
+
+    this.handleChange = this.handleChange.bind(this); 
   }
 
   componentDidMount() {
     this.populaClimaData();
+    fetch('https://localhost:44344/api/estado/getall')
+      .then(response => response.json())
+      .then(data => {
+        this.setState({ estados: data });
+      });
+  }
+
+  handleChange(event) { 
+    debugger;
+    let abc = this.state.estados;
+    abc.id = event.target.value;
+    unidadeId = abc.id;
+
+    this.setState({ abc: abc });
+
+    let teste = this.state.cidades;
+
+    if (unidadeId != 0) {
+      fetch('https://localhost:44344/api/cidade/getall')
+        .then(response => response.json())
+        .then(data => {
+          this.setState({ cidades: data });
+        });
+    }
   }
 
   static renderCidadeTabela(cidades) {
@@ -31,33 +77,40 @@ export class FetchClima extends Component {
   }
 
   render() {
+    debugger;
+    const combobox = {
+      width: '200px',
+      height: '100px',
+      display: 'inline-block'
+    }
+
     let contents = this.state.loading
       ? <p><em> Carregando... </em> </p>
       : FetchClima.renderClimaTabela(this.state.clima);
 
-
     return (
-
       <div>
         <h2 id="tableLabel">Climas</h2>
         <br></br>
 
-        <div>
-          <label for="cars">Estados: </label>
-          <select name="cars" id="cars">
-            <option value="volvo">Volvo</option>
-            <option value="saab">Saab</option>
-            <option value="opel">Opel</option>
-            <option value="audi">Audi</option>
+        <div style={combobox}>
+          <label>Estados: </label>
+          <select onChange={this.handleChange}>
+            <option disabled selected>Selecione um estado</option>
+            {this.state.estados.map(x =>
+              <option key={x.id} value={x.id}>{x.nome}</option>
+            )}
+
           </select>
         </div>
-        <div>
-          <label for="cars">Estados: </label>
-          <select name="cars" id="cars">
-            <option value="volvo">Volvo</option>
-            <option value="saab">Saab</option>
-            <option value="opel">Opel</option>
-            <option value="audi">Audi</option>
+        <div style={combobox}>
+          <label>Cidades: </label>
+          <select onChange={this.handleChange}>
+            <option disabled selected>Selecione uma cidade</option>
+            {this.state.cidades.map(x =>
+              <option key={x.id} value={x.id}>{x.nome}</option>
+            )}
+
           </select>
         </div>
 

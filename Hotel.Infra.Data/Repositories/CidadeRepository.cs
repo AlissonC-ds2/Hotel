@@ -20,7 +20,7 @@ namespace Hotel.Infra.Data.Repositories
       _session = session;
     }
 
-    public async Task<List<CidadeEstadoDto>> GetAllCidadadesEstado()
+    public async Task<List<CidadeEstadoDto>> GetAllCidadades()
     {
       Estado estadoAlias = null;
       Cidade cidadeAlias = null;
@@ -37,6 +37,28 @@ namespace Hotel.Infra.Data.Repositories
           .Select(()=> estadoAlias.Id).WithAlias(() => cidadeEstadoDtoAlias.EstadoId)
           .Select(()=> estadoAlias.Nome).WithAlias(() => cidadeEstadoDtoAlias.EstadoNome)
           .Select(()=> estadoAlias.Sigla).WithAlias(() => cidadeEstadoDtoAlias.SiglaEnum)
+        ).TransformUsing(Transformers.AliasToBean<CidadeEstadoDto>()).ListAsync<CidadeEstadoDto>()).ToList();
+
+      return lstCidades;
+    }
+
+    public async Task<List<CidadeEstadoDto>> GetAllCidadadesEstado(long unidadeId)
+    {
+      Estado estadoAlias = null;
+      Cidade cidadeAlias = null;
+      CidadeEstadoDto cidadeEstadoDtoAlias = null;
+
+      var query = _session.QueryOver(() => cidadeAlias)
+        .JoinAlias(() => cidadeAlias.Estado, () => estadoAlias)
+        .Where(() => estadoAlias.Id == unidadeId);
+
+      var lstCidades = (await query
+        .SelectList(l => l
+          .Select(() => cidadeAlias.Id).WithAlias(() => cidadeEstadoDtoAlias.Id)
+          .Select(() => cidadeAlias.Nome).WithAlias(() => cidadeEstadoDtoAlias.Nome)
+          .Select(() => estadoAlias.Id).WithAlias(() => cidadeEstadoDtoAlias.EstadoId)
+          .Select(() => estadoAlias.Nome).WithAlias(() => cidadeEstadoDtoAlias.EstadoNome)
+          .Select(() => estadoAlias.Sigla).WithAlias(() => cidadeEstadoDtoAlias.SiglaEnum)
         ).TransformUsing(Transformers.AliasToBean<CidadeEstadoDto>()).ListAsync<CidadeEstadoDto>()).ToList();
 
       return lstCidades;

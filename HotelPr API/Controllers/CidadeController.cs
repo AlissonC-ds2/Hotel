@@ -38,8 +38,12 @@ namespace HotelPr_API.Controllers
     => await _baseController.Delete<Cidade>(id);
 
     [HttpGet("getallcidadesestado")]
-    public async Task<IActionResult> GetAllCidadesEstado()
-    => Ok(await _cidadeRepository.GetAllCidadadesEstado());
+    public async Task<IActionResult> GetAllCidades()
+    => Ok(await _cidadeRepository.GetAllCidadades());
+
+    [HttpGet("getall")]
+    public async Task<IActionResult> GetAllCidadesEstado(long unidadeId)
+    => Ok(await _cidadeRepository.GetAllCidadadesEstado(unidadeId));
 
 
   }
