@@ -36,6 +36,7 @@ namespace Hotel.Infra.Data.Repositories
           .Select(()=> cidadeAlias.Nome).WithAlias(() => cidadeEstadoDtoAlias.Nome)
           .Select(()=> estadoAlias.Id).WithAlias(() => cidadeEstadoDtoAlias.EstadoId)
           .Select(()=> estadoAlias.Nome).WithAlias(() => cidadeEstadoDtoAlias.EstadoNome)
+          .Select(()=> estadoAlias.Sigla).WithAlias(() => cidadeEstadoDtoAlias.SiglaEnum)
         ).TransformUsing(Transformers.AliasToBean<CidadeEstadoDto>()).ListAsync<CidadeEstadoDto>()).ToList();
 
       return lstCidades;

@@ -20,4 +20,8 @@
     <PackageReference Include="NHibernate" Version="5.3.10" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Hotel.Infra.CrossCutting\Hotel.Infra.CrossCutting.csproj" />
+  </ItemGroup>
+
 </Project>
