@@ -2,12 +2,27 @@
 import React, { Component } from "react"
 import { Link } from 'react-router-dom'
 
+export class Cidade {
+  constructor() {
+    this.id = 0;
+    this.nome = "";
+    this.estadoId = 0;
+  }
+}
+
+export class Estado {
+  constructor() {
+    this.id = 0;
+    this.nome = "";
+  }
+}
+
 export class FetchClima extends Component {
   static displayName = "Climas";
 
   constructor() {
     super();
-    this.state = { clima: [], loading: true }
+    this.state = { clima: [], loading: true, estados: [new Estado], cidades: [new Cidade] }
   }
 
   componentDidMount() {
@@ -31,33 +46,40 @@ export class FetchClima extends Component {
   }
 
   render() {
+
+    const combobox = {
+      width: '200px',
+      height: '100px',
+      display: 'inline-block'
+    }
+
     let contents = this.state.loading
       ? <p><em> Carregando... </em> </p>
       : FetchClima.renderClimaTabela(this.state.clima);
 
-
     return (
-
       <div>
         <h2 id="tableLabel">Climas</h2>
         <br></br>
 
-        <div>
-          <label for="cars">Estados: </label>
-          <select name="cars" id="cars">
-            <option value="volvo">Volvo</option>
-            <option value="saab">Saab</option>
-            <option value="opel">Opel</option>
-            <option value="audi">Audi</option>
+        <div style={combobox}>
+          <label for="combobox">Estados: </label>
+          <select>
+            <option disabled selected>Selecione um estado</option>
+            {this.state.estados.map(x =>
+              <option key={x.id}>{x.nome}</option>
+            )}
+
           </select>
         </div>
-        <div>
-          <label for="cars">Estados: </label>
-          <select name="cars" id="cars">
-            <option value="volvo">Volvo</option>
-            <option value="saab">Saab</option>
-            <option value="opel">Opel</option>
-            <option value="audi">Audi</option>
+        <div style={combobox}>
+          <label for="combobox">Cidades: </label>
+          <select>
+            <option disabled selected>Selecione uma cidade</option>
+            {this.state.cidades.map(x =>
+              <option key={x.id}>{x.nome}{x.estadoId}</option>
+            )}
+
           </select>
         </div>
 
