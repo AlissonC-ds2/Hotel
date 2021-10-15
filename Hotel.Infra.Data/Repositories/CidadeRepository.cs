@@ -42,7 +42,7 @@ namespace Hotel.Infra.Data.Repositories
       return lstCidades;
     }
 
-    public async Task<List<CidadeEstadoDto>> GetAllCidadadesEstado(long unidadeId)
+    public async Task<List<CidadeEstadoDto>> GetAllCidadadesEstado(long estadoId)
     {
       Estado estadoAlias = null;
       Cidade cidadeAlias = null;
@@ -50,7 +50,7 @@ namespace Hotel.Infra.Data.Repositories
 
       var query = _session.QueryOver(() => cidadeAlias)
         .JoinAlias(() => cidadeAlias.Estado, () => estadoAlias)
-        .Where(() => estadoAlias.Id == unidadeId);
+        .Where(() => estadoAlias.Id == estadoId);
 
       var lstCidades = (await query
         .SelectList(l => l
