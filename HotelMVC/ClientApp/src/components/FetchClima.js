@@ -3,7 +3,7 @@ import React, { Component } from "react"
 import { Link } from 'react-router-dom'
 
 
-let unidadeId = 0;
+let estadoId = 0;
 
 export class Cidade {
   constructor() {
@@ -45,13 +45,13 @@ export class FetchClima extends Component {
     debugger;
     let abc = this.state.estados;
     abc.id = event.target.value;
-    unidadeId = abc.id;
+    estadoId = abc.id;
 
     this.setState({ abc: abc });
 
     let teste = this.state.cidades;
 
-    if (unidadeId != 0) {
+    if (estadoId != 0) {
       fetch('https://localhost:44344/api/cidade/getall')
         .then(response => response.json())
         .then(data => {
