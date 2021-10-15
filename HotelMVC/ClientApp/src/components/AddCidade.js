@@ -1,4 +1,6 @@
-﻿import React, { Component, useEffect } from "react";
+﻿import React, { Component, useEffect, useState } from "react";
+
+
 
 export class Cidade {
   constructor() {
@@ -24,7 +26,7 @@ export class AddCidade extends Component {
 
     this.handleSave = this.handleSave.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
-
+    this.handleChange = this.handleChange.bind(this);
   }
 
 
@@ -35,7 +37,7 @@ export class AddCidade extends Component {
       .then(response => response.json())
       .then(data => {
         this.setState({ estados: data });
-      });
+    });
   }
 
   render() {
@@ -53,9 +55,11 @@ export class AddCidade extends Component {
 
 
   handleSave(event) {
+    debugger;
     event.preventDefault();
 
     const data = new FormData(event.target);
+
 
     if (this.state.cidade.id) {
       const response1 = fetch('https://localhost:44344/api/cidade' + this.state.cidade.id, { method: 'PUT', body: data });
@@ -67,6 +71,18 @@ export class AddCidade extends Component {
     }
   }
 
+  handleChange(event) {
+    debugger;
+    var abc = this.state.cidade;
+    abc.estadoId = event.target.value;
+
+    this.setState({abc: abc});
+
+    //this.setState({ cidade: { ...this.state.cidade, estadoId: event.target.value } })
+
+    let teste = this.state.cidade;
+  }
+
   handleCancel(event) {
     event.preventDefault();
     this.props.history.push('/fetch-cidade');
@@ -74,9 +90,8 @@ export class AddCidade extends Component {
 
 
   renderCreateForm() {
-    debugger;
     return (
-      <form onSubmit={this.handleSave}>
+      <form id= "form1" onSubmit={this.handleSave}>
         <div className="form-group row">
           <input type="hidden" name="id" value={this.state.cidade.id} />
         </div>
@@ -88,15 +103,22 @@ export class AddCidade extends Component {
           </div>
         </div>
 
-        <div>
-          <select>
+        <div className="form-group row">
+          <select form="form1" onChange={this.handleChange} defaultValue={this.state.cidade.estadoId}>
             <option disabled selected>Selecione um estado</option>
             {this.state.estados.map(x =>
-              <option key={x.id}>{x.nome}</option>
+              <option key={x.id} value={x.id}>{x.nome}</option>
             )}
-
+           
           </select>
         </div>
+
+        <div className="form-group">
+          <button type="submit" className="btn btn-success" value={this.state.cidade.id}>Salvar</button>
+          <button className="btn btn-danger" onClick={this.handleCancel}>Cancelar</button>
+        </div>
+
+
       </form>
     );
   }

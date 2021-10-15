@@ -24,7 +24,7 @@ namespace HotelPr_API.Controllers
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post([FromBody] CidadeModel model)
+    public async Task<IActionResult> Post([FromForm] CidadeModel model)
     => await _baseController.Post<Cidade, CidadeModel>(model);
 
 
