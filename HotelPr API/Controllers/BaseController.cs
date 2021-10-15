@@ -1,7 +1,9 @@
-﻿using Hotel.Domain.Model;
+﻿using AutoMapper;
+using Hotel.Domain;
+using Hotel.Domain.Model;
 using Hotel.Infra.Data.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NHibernate;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,38 +11,101 @@ using System.Threading.Tasks;
 
 namespace HotelPr_API.Controllers
 {
-  [Route("api/[controller]")]
   [ApiController]
-  public class BaseController : ControllerBase
+	public class BaseController //: ControllerBase
   {
-    private readonly IRepository _session;
+    private readonly IRepository _repository;
+    private readonly IMapper _mapper;
+    private readonly ISession _session;
 
-    public BaseController(IRepository session)
+		public BaseController(IRepository repository, IMapper mapper, ISession session)
+		{
+			_repository = repository;
+			_mapper = mapper;
+			_session = session;
+		}
+
+		public async Task<IActionResult> Post<T, TDestination>(TDestination model) where T : BaseEntity where TDestination : BaseModel
     {
-      _session = session;
-    }
-
-
-    [HttpPost]
-    public async Task Post<T>(T model) where T : BaseModel
-    {
-      //Fazer a conversão do model para entidade e depois salvar a entidade !!!!!
+      var entity = _mapper.Map<T>(model);
       try
       {
-        _session.BeginTransaction();
+        _repository.BeginTransaction();
 
-        await _session.Save(model);
-        await _session.Commit();
+        await _repository.Save(entity);
+        await _repository.Commit();
       }
       catch
       {
-        await _session.Rollback();
+        await _repository.Rollback();
       }
       finally
       {
-        _session.CloseTransaction();
+        _repository.CloseTransaction();
       }
+
+      
+      _mapper.Map(entity, model);
+
+      return new OkObjectResult(model);
     }
+
+
+
+    public async Task<IActionResult> Put<T, TDestination>(TDestination model) where T : BaseEntity where TDestination : BaseModel
+    {
+
+      var entidade = await _session.GetAsync<T>(model.Id);
+      _mapper.Map(model, entidade);
+
+      try
+      {
+        _repository.BeginTransaction();
+
+        await _repository.Save(entidade);
+        await _repository.Commit();
+      }
+      catch
+      {
+        await _repository.Rollback();
+      }
+      finally
+      {
+        _repository.CloseTransaction();
+      }
+
+
+      _mapper.Map(entidade, model);
+
+      return new OkObjectResult(model);
+    }
+
+
+    public async Task<IActionResult> Delete<T>(int id) where T : BaseEntity
+    {
+      var entidade = await _session.GetAsync<T>(id);
+
+      try
+      {
+        _repository.BeginTransaction();
+
+        await _repository.Delete(entidade);
+        await _repository.Commit();
+      }
+      catch
+      {
+        await _repository.Rollback();
+      }
+      finally
+      {
+        _repository.CloseTransaction();
+      }
+
+      return null;
+    }
+
+
+
 
   }
 }
