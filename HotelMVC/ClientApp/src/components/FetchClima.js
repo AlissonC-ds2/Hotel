@@ -45,14 +45,15 @@ export class FetchClima extends Component {
     debugger;
     let abc = this.state.estados;
     abc.id = event.target.value;
-    estadoId = abc.id;
+  
+    estadoId = parseInt(abc.id);
 
     this.setState({ abc: abc });
 
     let teste = this.state.cidades;
 
     if (estadoId != 0) {
-      fetch('https://localhost:44344/api/cidade/getall')
+      fetch('https://localhost:44344/api/cidade/' + estadoId)
         .then(response => response.json())
         .then(data => {
           this.setState({ cidades: data });
@@ -105,7 +106,7 @@ export class FetchClima extends Component {
         </div>
         <div style={combobox}>
           <label>Cidades: </label>
-          <select onChange={this.handleChange}>
+          <select>
             <option disabled selected>Selecione uma cidade</option>
             {this.state.cidades.map(x =>
               <option key={x.id} value={x.id}>{x.nome}</option>
