@@ -29,7 +29,7 @@ namespace HotelPr_API.Controllers
 
 
     [HttpPut]
-    public async Task<IActionResult> Put([FromBody] CidadeModel model)
+    public async Task<IActionResult> Put([FromForm] CidadeModel model)
     => await _baseController.Put<Cidade, CidadeModel>(model);
 
 
