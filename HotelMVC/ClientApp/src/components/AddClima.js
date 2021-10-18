@@ -6,6 +6,11 @@ import { Input, Button, Select } from 'react-advanced-form-addons'
 export  class AddClima extends Component {
 
   registerUser = ({ serialized, fields, form }) => {
+
+    debugger;
+    let teste = serialized;
+
+
     return fetch('https://backend.dev', {
       body: JSON.stringify(serialized)
     })
