@@ -9,6 +9,7 @@ import { FetchCidade } from './components/FetchCidade';
 import { FetchClima } from './components/FetchClima';
 import { AddCliente } from './components/AddCliente';
 import { AddCidade } from './components/AddCidade';
+import { AddClima } from './components/AddClima';
 
 
 
@@ -28,7 +29,10 @@ export default class App extends Component {
         <Route path='/fetch-clima' component={FetchClima} />
         <Route path='/add-cliente' component={AddCliente} />
         <Route path='/add-cidade' component={AddCidade} />
+        <Route path='/add-clima' component={AddClima} />
+
         <Route path='/cliente/put/:id' component={AddCliente} />
+
       </Layout>
     );
   }

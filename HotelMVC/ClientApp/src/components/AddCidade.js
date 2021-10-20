@@ -59,7 +59,7 @@ export class AddCidade extends Component {
     event.preventDefault();
 
     const data = new FormData(event.target);
-
+    data.append("estadoId", this.state.cidade.estadoId);
 
     if (this.state.cidade.id) {
       const response1 = fetch('https://localhost:44344/api/cidade' + this.state.cidade.id, { method: 'PUT', body: data });
@@ -73,14 +73,10 @@ export class AddCidade extends Component {
 
   handleChange(event) {
     debugger;
-    var abc = this.state.cidade;
-    abc.estadoId = parseInt(event.target.value);
+    var cidade = this.state.cidade;
+    cidade.estadoId = parseInt(event.target.value);
 
-    this.setState({abc: abc});
-
-    //this.setState({ cidade: { ...this.state.cidade, estadoId: event.target.value } })
-
-    let teste = this.state.cidade;
+    this.setState({ cidade: cidade});
   }
 
   handleCancel(event) {
@@ -90,9 +86,8 @@ export class AddCidade extends Component {
 
 
   renderCreateForm() {
-    debugger;
     return (
-      <form id= "form1" onSubmit={this.handleSave}>
+      <form id="carform" onSubmit={this.handleSave}>
         <div className="form-group row">
           <input type="hidden" name="id" value={this.state.cidade.id} />
         </div>
@@ -105,7 +100,7 @@ export class AddCidade extends Component {
         </div>
 
         <div className="form-group row">
-          <select form="form1" onChange={this.handleChange}>
+          <select form="carform" defaultValue={this.state.cidade.estadoId} name="estadoId"onChange={this.handleChange}>
             <option disabled selected>Selecione um estado</option>
             {this.state.estados.map(x =>
               <option key={x.id} value={x.id}>{x.nome}</option>
@@ -140,7 +135,6 @@ export class AddCidade extends Component {
     }
 
     this.state = { title: "Cadastrar", cidade: new Cidade(), loading: false};
-
   }
 
 }
