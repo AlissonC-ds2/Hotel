@@ -85,9 +85,6 @@ export class FetchClima extends Component {
       display: 'inline-block'
     }
 
-    let contents = this.state.loading
-      ? <p><em> Carregando... </em> </p>
-      : FetchClima.renderClimaTabela(this.state.clima);
 
     return (
       <div>
@@ -115,8 +112,9 @@ export class FetchClima extends Component {
           </select>
         </div>
 
-
-        {contents}
+        <p>
+          <Link to="/add-clima"><button className="btn btn-success">Cadastrar Clima</button></Link>
+        </p>
 
       </div>
 
