@@ -47,7 +47,7 @@ export class AddCidade extends Component {
     return (
       <div>
         <h1>{this.state.title}</h1>
-        <h3>Cliente</h3>
+        <h3>Cidade</h3>
         {contents}
       </div>
     );
@@ -74,7 +74,7 @@ export class AddCidade extends Component {
   handleChange(event) {
     debugger;
     var abc = this.state.cidade;
-    abc.estadoId = event.target.value;
+    abc.estadoId = parseInt(event.target.value);
 
     this.setState({abc: abc});
 
@@ -90,6 +90,7 @@ export class AddCidade extends Component {
 
 
   renderCreateForm() {
+    debugger;
     return (
       <form id= "form1" onSubmit={this.handleSave}>
         <div className="form-group row">
@@ -104,7 +105,7 @@ export class AddCidade extends Component {
         </div>
 
         <div className="form-group row">
-          <select form="form1" onChange={this.handleChange} defaultValue={this.state.cidade.estadoId}>
+          <select form="form1" onChange={this.handleChange}>
             <option disabled selected>Selecione um estado</option>
             {this.state.estados.map(x =>
               <option key={x.id} value={x.id}>{x.nome}</option>
