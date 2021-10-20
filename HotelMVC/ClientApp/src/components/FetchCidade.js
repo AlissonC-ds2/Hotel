@@ -2,6 +2,7 @@
 import React, { Component } from "react"
 import { Link } from 'react-router-dom'
 
+
 export class FetchCidade extends Component {
   static displayName = "Cidades";
 
@@ -102,7 +103,7 @@ export class FetchCidade extends Component {
         <p>Tela de listagem de Cidades</p>
 
         <p>
-          <Link to="/add-cidade">Cadastrar Cidade</Link>
+          <Link to="/add-cidade"><button className="btn btn-success">Cadastrar Cidade</button></Link>
         </p>
 
         {contents}
