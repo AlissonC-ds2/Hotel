@@ -33,7 +33,7 @@ export class Home extends Component {
   }
 
   componentDidMount() {
-    this.populaClimaData();
+    //this.populaClimaData();
     fetch('https://localhost:44344/api/estado/getall')
       .then(response => response.json())
       .then(data => {
@@ -41,12 +41,18 @@ export class Home extends Component {
       });
   }
 
-  handleChange({ event }) {
+  handleChange = ({
+    event,
+    nextValue,
+    prevValue,
+    fieldProps,
+    fields,
+    form
+  }) => {
     debugger;
     let abc = this.state.estados;
-    abc.id = event.target.value;
 
-    estadoId = parseInt(abc.id);
+    estadoId = parseInt(nextValue);
 
     this.setState({ abc: abc });
 
@@ -103,6 +109,7 @@ export class Home extends Component {
               {this.state.estados.map(x =>
                 <option key={x.id} value={x.id}>{x.nome}</option>
               )}
+              <option disabled selected>Selecione um estado</option>
 
             </Select>
           </div>
