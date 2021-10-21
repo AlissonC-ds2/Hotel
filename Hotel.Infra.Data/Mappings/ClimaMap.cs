@@ -16,6 +16,7 @@ namespace Hotel.Infra.Data.Mappings
       Table("Clima");
 
       Id(x => x.Id);
+      Map(x => x.Data).Not.Nullable();
       Map(x => x.Temperatura).Not.Nullable().Length(12);
       Map(x => x.TemperaturaMaxima).Not.Nullable().Length(12);
       Map(x => x.TemperaturaMinima).Not.Nullable().Length(12);
