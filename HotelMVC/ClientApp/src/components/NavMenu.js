@@ -43,7 +43,7 @@ export class NavMenu extends Component {
                 </NavItem>
 
                 <NavItem>
-                  <NavLink tag={Link} className="text-dark" to="/fetch-clima">Clima</NavLink>
+                  <NavLink tag={Link} className="text-dark" to="/add-clima">Cadastrar Clima</NavLink>
                 </NavItem>
 
               </ul>
