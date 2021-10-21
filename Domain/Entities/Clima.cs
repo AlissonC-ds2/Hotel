@@ -9,6 +9,7 @@ namespace Hotel.Domain.Entities
 {
 	public class Clima : BaseEntity
 	{
+		public virtual DateTime Data { get; set; }
 		public virtual double Temperatura { get; set; }
 		public virtual double TemperaturaMaxima { get; set; }
 		public virtual double TemperaturaMinima { get; set; }

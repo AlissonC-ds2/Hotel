@@ -12,6 +12,7 @@ namespace Hotel.Domain.Model
 	[AutoMap(typeof(Clima), ReverseMap = true)]
 	public class ClimaModel : BaseModel
 	{
+		public DateTime Data { get; set; }
 		public double Temperatura { get; set; }
 		public double TemperaturaMaxima { get; set; }
 		public double TemperaturaMinima { get; set; }
