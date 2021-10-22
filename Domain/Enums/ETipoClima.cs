@@ -15,7 +15,7 @@ namespace Hotel.Domain.Enums
     Tropical = 1,
     [Description("Semiárido")]
     Semiárido = 2,
-    [Description("Tropical de altitude")]
+    [Description("Tropical de Altitude")]
     Tropical_de_altitude = 3,
     [Description("Tropical Atlântico")]
     Tropical_Atlantico = 4,

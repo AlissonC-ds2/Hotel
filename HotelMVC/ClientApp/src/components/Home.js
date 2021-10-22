@@ -103,20 +103,17 @@ export class Home extends Component {
           <br></br>
 
           <div style={combobox}>
-            <label>Estados: </label>
-            <Select onChange={this.handleChange}>
-              <option disabled selected>Selecione um estado</option>
+            <Select name="estado" label="Estado" onChange={this.handleChange}>
+              <option selected>Selecione um Estado</option>
               {this.state.estados.map(x =>
                 <option key={x.id} value={x.id}>{x.nome}</option>
               )}
-              <option disabled selected>Selecione um estado</option>
 
             </Select>
           </div>
           <div style={combobox}>
-            <label>Cidades: </label>
-            <Select>
-              <option disabled selected>Selecione uma cidade</option>
+            <Select name="cidade" label="Cidade">
+              <option selected>Selecione uma Cidade</option>
               {this.state.cidades.map(x =>
                 <option key={x.id} value={x.id}>{x.nome}</option>
               )}
@@ -125,7 +122,7 @@ export class Home extends Component {
           </div>
 
           <p style={combobox}>
-            <button style={pesquisar}>Pesquisar Climas</button>
+            <Button style={pesquisar}>Pesquisar Climas</Button>
           </p>
 
         </div>

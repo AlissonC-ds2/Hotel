@@ -68,7 +68,6 @@ export  class AddClima extends Component {
 
     this.setState({ abc: abc });
 
-    let teste = this.state.cidades;
 
     if (estadoId != 0) {
       fetch('https://localhost:44344/api/cidade/' + estadoId)
@@ -87,13 +86,22 @@ export  class AddClima extends Component {
       width: '270px'
     }
 
+    const ETipoClima = [
+      { value: 0, label: 'Equatorial' },
+      { value: 1, label: 'Tropical' },
+      { value: 2, label: 'Semiárido' },
+      { value: 3, label: 'Tropical de Altitude' },
+      { value: 4, label: 'Tropical Atlântico' },
+      { value: 5, label: 'Subtropical' },
+    ]
+
     return (
     <Form
       action={this.registerUser}>
 
       <div style={colunas}>
         <Select name="estado" label="Estado" onChange={this.handleChange}>
-          <option disabled selected>Selecione um estado</option>
+          <option selected>Selecione um Estado</option>
           {this.state.estados.map(x =>
             <option key={x.id} value={x.id}>{x.nome}</option>
           )}
@@ -101,7 +109,8 @@ export  class AddClima extends Component {
       </div>
 
       <div style={colunas}>
-        <Select name="cidade" label="Cidade">
+          <Select name="cidade" label="Cidade">
+            <option selected>Selecione um Cidade</option>
           {this.state.cidades.map(x =>
             <option key={x.id} value={x.id}>{x.nome}</option>
           )}
@@ -154,10 +163,12 @@ export  class AddClima extends Component {
           required />
       </div>
       <div style={colunas}>
-        <Input
-          name="tipoClima"
-          label="Tipo Clima"
-          required />
+        <Select name="tipoClima" label="Climas">
+          <option selected>Selecione um Clima</option>
+          {ETipoClima.map(x =>
+            <option key={x.value} value={x.value}>{x.label}</option>
+          )}
+        </Select>
       </div>
 
       <Button primary>Cadastrar Clima</Button>

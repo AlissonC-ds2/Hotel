@@ -100,7 +100,7 @@ export class AddCidade extends Component {
         </div>
 
         <div className="form-group row">
-          <select form="carform">
+          <select form="carform" onChange={this.handleChange}>
             <option disabled selected>Selecione um estado</option>
             {this.state.estados.map(x =>
               <option key={x.id} value={x.id}>{x.nome}</option>
