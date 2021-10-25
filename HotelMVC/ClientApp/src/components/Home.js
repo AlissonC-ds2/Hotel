@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import { Form, Field } from 'react-advanced-form'
 import { Input, Button, Select } from 'react-advanced-form-addons'
 import { Container, Row, Col } from 'react-grid-system';
+import { AgGridColumn, AgGridReact } from 'ag-grid-react';
+
+import 'ag-grid-community/dist/styles/ag-grid.css';
+import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 
 
 let estadoId = 0;
@@ -26,7 +30,6 @@ export class Home extends Component {
 
 
   constructor(props) {
-    debugger;
     super(props);
     this.state = { clima: [], loading: true, estados: [new Estado], cidades: [new Cidade] }
 
@@ -98,27 +101,11 @@ export class Home extends Component {
     }
     const div = {
       display: 'inline-block',
-      height: '200px',
+      height: '800px',
     }
-    const div2 = {
-      display: 'inline-block',
-      height: '550px',
-    }
-
     const container = {
-      background: 'LightCyan',
       height: '500px',
       width: '1200px',
-      border: '3px solid black'
-    }
-    const border = {
-      borderRight: '3px solid black',
-      borderBottom: '3px solid black',
-      height: '40px'
-    }
-    const border2 = {
-      borderBottom: '3px solid black',
-      height: '40px'
     }
 
 
@@ -152,79 +139,71 @@ export class Home extends Component {
             <Button style={pesquisar}>Pesquisar Climas</Button>
           </p>
 
-        </div>
-        <div style={div2}>
-          <Container style={container}>
-            <Row>
-              <Col style={border}>
-                <h5>Temperatura Max</h5>
-              </Col>
-              <Col style={border}>
-                <h5>Temperatura Min</h5>
-              </Col>
-              <Col style={border}>
-                <h5>Temperatura</h5>
-              </Col>
-              <Col style={border}>
-                <h5>Umidade</h5>
-              </Col>
-              <Col style={border}>
-                <h5>Clima</h5>
-              </Col>
-              <Col style={border2}>
-                <h5>Cidade</h5>
-              </Col>
-            </Row>
-          </Container>
+          <div
+            className="ag-theme-balham"
+            style={container}
+          >
+            <AgGridReact
+              pagination={true}
+              // rowData retorna os dados do grid
+              rowData={this.state.rowData}>
+              <AgGridColumn field="TemperaturaMax" sortable={true}></AgGridColumn>
+              <AgGridColumn field="TemperaturaMin" sortable={true}></AgGridColumn>
+              <AgGridColumn field="Temperatura" sortable={true}></AgGridColumn>
+              <AgGridColumn field="Descricao" sortable={true}></AgGridColumn>
+              <AgGridColumn field="Umidade" sortable={true}></AgGridColumn>
+              <AgGridColumn field="Cidade" sortable={true}></AgGridColumn>
+              <AgGridColumn field="Data" sortable={true}></AgGridColumn>
+              <AgGridColumn field="TipoClima" sortable={true}></AgGridColumn>
+
+            </AgGridReact>
+          </div>
         </div>
 
-        <div style={combobox}>
-          <Select name="estado" label="Estado" onChange={this.handleChange}>
-            <option selected>Selecione um Estado</option>
-            {this.state.estados.map(x =>
-              <option key={x.id} value={x.id}>{x.nome}</option>
-            )}
 
-          </Select>
-        </div>
-        <div style={combobox}>
-          <Select name="cidade" label="Cidade">
-            <option selected>Selecione uma Cidade</option>
-            {this.state.cidades.map(x =>
-              <option key={x.id} value={x.id}>{x.nome}</option>
-            )}
+        <div style={div}>
+          <div style={combobox}>
+            <Select name="estado" label="Estado" onChange={this.handleChange}>
+              <option selected>Selecione um Estado</option>
+              {this.state.estados.map(x =>
+                <option key={x.id} value={x.id}>{x.nome}</option>
+              )}
 
-          </Select>
-        </div>
+            </Select>
+          </div>
+          <div style={combobox}>
+            <Select name="cidade" label="Cidade">
+              <option selected>Selecione uma Cidade</option>
+              {this.state.cidades.map(x =>
+                <option key={x.id} value={x.id}>{x.nome}</option>
+              )}
 
-        <p style={combobox}>
-          <Button style={pesquisar}>Pesquisar Climas</Button>
-        </p>
+            </Select>
+          </div>
 
+          <p style={combobox}>
+            <Button style={pesquisar}>Pesquisar Climas</Button>
+          </p>
 
-        <div style={div2}>
-          <Container style={container}>
-            <Row>
-              <Col style={border}>
-                <h5>Temperatura Max</h5>
-              </Col>
-              <Col style={border}>
-                <h5>Temperatura Min</h5>
-              </Col>
-              <Col style={border}>
-                <h5>Temperatura</h5>
-              </Col>
-              <Col style={border}>
-                <h5>Umidade</h5>
-              </Col>
-              <Col style={border}>
-                <h5>Clima</h5>
-              </Col>
-              <Col style={border2}>
-                <h5>Cidade</h5>
-              </Col>
-            </Row>
-          </Container>
+          <div
+            className="ag-theme-balham"
+            style={container}
+          >
+            <AgGridReact
+              pagination={true}
+              // rowData retorna os dados do grid
+              rowData={this.state.rowData}>
+              <AgGridColumn field="TemperaturaMax" sortable={true}></AgGridColumn>
+              <AgGridColumn field="TemperaturaMin" sortable={true}></AgGridColumn>
+              <AgGridColumn field="Temperatura" sortable={true}></AgGridColumn>
+              <AgGridColumn field="Descricao" sortable={true}></AgGridColumn>
+              <AgGridColumn field="Umidade" sortable={true}></AgGridColumn>
+              <AgGridColumn field="Cidade" sortable={true}></AgGridColumn>
+              <AgGridColumn field="Data" sortable={true}></AgGridColumn>
+              <AgGridColumn field="TipoClima" sortable={true}></AgGridColumn>
+
+            </AgGridReact>
+          </div>
         </div>
       </Form>
     );
