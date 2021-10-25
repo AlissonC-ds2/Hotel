@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Form, Field } from 'react-advanced-form'
 import { Input, Button, Select } from 'react-advanced-form-addons'
+import { Container, Row, Col } from 'react-grid-system';
 
 
 let estadoId = 0;
@@ -94,11 +95,32 @@ export class Home extends Component {
       display: 'inline-block',
       background: 'lightblue'
     }
+    const div = {
+      display: 'inline-block',
+      height: '200px',
+    }
+
+    const container = {
+      background: 'lightblue',
+      height: '500px',
+      width: '1000px',
+      border: '3px solid black'
+    }
+    const border = {
+      borderRight: '3px solid black',
+      borderBottom: '3px solid black',
+      height: '40px'
+    }
+    const border2 = {
+      borderBottom: '3px solid black',
+      height: '40px'
+    }
+
 
     debugger;
     return (
       <Form>
-        <div>
+        <div style={div}>
           <h2 id="tableLabel">Climas</h2>
           <br></br>
 
@@ -125,6 +147,27 @@ export class Home extends Component {
             <Button style={pesquisar}>Pesquisar Climas</Button>
           </p>
 
+        </div>
+        <div style={div}>
+          <Container style={container}>
+            <Row>
+              <Col style={border}>
+                Temperatura Max
+              </Col>
+              <Col style={border}>
+                Temperatura Min
+              </Col>
+              <Col style={border}>
+                Temperatura
+              </Col>
+              <Col style={border}>
+                Umidade
+              </Col>
+              <Col style={border2}>
+                Clima
+              </Col>
+            </Row>
+          </Container>
         </div>
       </Form>
     );
