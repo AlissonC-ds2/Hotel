@@ -85,8 +85,9 @@ export class Home extends Component {
   render() {
     debugger;
     const combobox = {
-      width: '300px',
-      display: 'inline-block'
+      width: '370px',
+      display: 'inline-block',
+      height: '85px',
     }
 
     const pesquisar = {
@@ -99,11 +100,15 @@ export class Home extends Component {
       display: 'inline-block',
       height: '200px',
     }
+    const div2 = {
+      display: 'inline-block',
+      height: '550px',
+    }
 
     const container = {
-      background: 'lightblue',
+      background: 'LightCyan',
       height: '500px',
-      width: '1000px',
+      width: '1200px',
       border: '3px solid black'
     }
     const border = {
@@ -148,23 +153,75 @@ export class Home extends Component {
           </p>
 
         </div>
-        <div style={div}>
+        <div style={div2}>
           <Container style={container}>
             <Row>
               <Col style={border}>
-                Temperatura Max
+                <h5>Temperatura Max</h5>
               </Col>
               <Col style={border}>
-                Temperatura Min
+                <h5>Temperatura Min</h5>
               </Col>
               <Col style={border}>
-                Temperatura
+                <h5>Temperatura</h5>
               </Col>
               <Col style={border}>
-                Umidade
+                <h5>Umidade</h5>
+              </Col>
+              <Col style={border}>
+                <h5>Clima</h5>
               </Col>
               <Col style={border2}>
-                Clima
+                <h5>Cidade</h5>
+              </Col>
+            </Row>
+          </Container>
+        </div>
+
+        <div style={combobox}>
+          <Select name="estado" label="Estado" onChange={this.handleChange}>
+            <option selected>Selecione um Estado</option>
+            {this.state.estados.map(x =>
+              <option key={x.id} value={x.id}>{x.nome}</option>
+            )}
+
+          </Select>
+        </div>
+        <div style={combobox}>
+          <Select name="cidade" label="Cidade">
+            <option selected>Selecione uma Cidade</option>
+            {this.state.cidades.map(x =>
+              <option key={x.id} value={x.id}>{x.nome}</option>
+            )}
+
+          </Select>
+        </div>
+
+        <p style={combobox}>
+          <Button style={pesquisar}>Pesquisar Climas</Button>
+        </p>
+
+
+        <div style={div2}>
+          <Container style={container}>
+            <Row>
+              <Col style={border}>
+                <h5>Temperatura Max</h5>
+              </Col>
+              <Col style={border}>
+                <h5>Temperatura Min</h5>
+              </Col>
+              <Col style={border}>
+                <h5>Temperatura</h5>
+              </Col>
+              <Col style={border}>
+                <h5>Umidade</h5>
+              </Col>
+              <Col style={border}>
+                <h5>Clima</h5>
+              </Col>
+              <Col style={border2}>
+                <h5>Cidade</h5>
               </Col>
             </Row>
           </Container>
