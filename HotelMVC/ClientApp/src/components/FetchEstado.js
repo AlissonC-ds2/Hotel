@@ -1,6 +1,11 @@
 ﻿import { Button } from "bootstrap";
 import React, { Component } from "react"
+import { Form, Field } from 'react-advanced-form'
 import { Link } from 'react-router-dom'
+import { AgGridColumn, AgGridReact } from 'ag-grid-react';
+
+import 'ag-grid-community/dist/styles/ag-grid.css';
+import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 
 
 export class FetchEstado extends Component {
@@ -14,7 +19,7 @@ export class FetchEstado extends Component {
 
 
   componentDidMount() {
-    this.populaCidadeData();
+    this.populaEstadoData();
   }
 
 
@@ -54,62 +59,83 @@ export class FetchEstado extends Component {
       overflow: 'hidden',
     };
 
+    //return (
+    //  <table className='table table-striped' aria-labelledby="tabelLabel" style={table}>
+    //    <thead>
+    //      <tr>
+    //        <th>Código</th>
+    //        <th>Nome</th>
+    //        <th>Sigla</th>
+    //        <th>Editar</th>
+    //        <th>Deletar</th>
+    //      </tr>
+    //    </thead>
+    //    <tbody style={body}>
+    //      {estados.map(c =>
+    //        <tr key={c.id}>
+    //          <td> {c.id} </td>
+    //          <td> {c.nome}</td>
+    //          <td> {c.sigla}</td>
+    //          <td>
+    //            <button className="btn btn-success" onClick={(id) => this.handleEdit(c.id)}>Editar</button> &nbsp;
+    //          </td>
+    //          <td>
+    //            <button className="btn btn-danger" onClick={(id) => this.handleDelete(c.id)}>Delete</button>
+    //          </td>
 
-    return (
-      <table className='table table-striped' aria-labelledby="tabelLabel" style={table}>
-        <thead>
-          <tr>
-            <th>Código</th>
-            <th>Nome</th>
-            <th>Sigla</th>
-            <th>Editar</th>
-            <th>Deletar</th>
-          </tr>
-        </thead>
-        <tbody style={body}>
-          {estados.map(c =>
-            <tr key={c.id}>
-              <td> {c.id} </td>
-              <td> {c.nome}</td>
-              <td> {c.sigla}</td>
-              <td>
-                <button className="btn btn-success" onClick={(id) => this.handleEdit(c.id)}>Editar</button> &nbsp;
-              </td>
-              <td>
-                <button className="btn btn-danger" onClick={(id) => this.handleDelete(c.id)}>Delete</button>
-              </td>
+    //        </tr>
+    //      )}
+    //    </tbody>
+    //  </table>
 
-            </tr>
-          )}
-        </tbody>
-      </table>
-    );
+    //);
   }
 
 
   render() {
+    debugger;
+    const container = {
+      height: '500px',
+      width: '410px',
+    }
+
     let contents = this.state.loading
       ? <p><em> Carregando... </em> </p>
       : FetchEstado.renderEstadoTabela(this.state.estados);
 
 
     return (
-      <div>
-        <h1 id="tableLabel">Estados</h1>
-        <p>Tela de listagem de Estados</p>
+      <Form>
+        <div>
+          <h1 id="tableLabel">Estados</h1>
+          <p>Tela de listagem de Estados</p>
 
-        <p>
-          <Link to="/add-estado"><button className="btn btn-success">Cadastrar Estado</button></Link>
-        </p>
+          <p>
+            <Link to="/add-estado"><button className="btn btn-success">Cadastrar Estado</button></Link>
+          </p>
 
-        {contents}
+          {contents}
 
-      </div>
+        </div>
+        <div
+          className="ag-theme-balham"
+          style={container}
+        >
+          <AgGridReact
+            pagination={true}
+            // rowData retorna os dados do grid
+            rowData={this.state.estados}>
+            <AgGridColumn field="nome" sortable={true}></AgGridColumn>
+            <AgGridColumn field="sigla" sortable={true}></AgGridColumn>
+          </AgGridReact>
+        </div>
+      </Form>
+
     );
   }
 
 
-  async populaCidadeData() {
+  async populaEstadoData() {
     debugger;
     const response = await fetch("https://localhost:44344/api/estado/GetAll");
     const data = await response.json();

@@ -61,9 +61,7 @@ export class FetchCidade extends Component {
           <tr>
             <th>Código</th>
             <th>Nome</th>
-            <th>Cidade</th>
-            <th>Endereco</th>
-            <th>Nacionalidade</th>
+            <th>Estado</th>
             <th>Editar</th>
             <th>Deletar</th>
           </tr>
@@ -73,9 +71,7 @@ export class FetchCidade extends Component {
             <tr key={c.id}>
               <td> {c.id} </td>
               <td> {c.nome}</td>
-              <td> {c.cidade}</td>
-              <td> {c.endereco}</td>
-              <td> {c.nacionalidade}</td>
+              <td> {c.estadoNome}</td>
               <td>
                 <button className="btn btn-success" onClick={(id) => this.handleEdit(c.id)}>Editar</button> &nbsp;
               </td>
@@ -115,7 +111,7 @@ export class FetchCidade extends Component {
 
   async populaCidadeData() {
     debugger;
-    const response = await fetch("https://localhost:44344/api/cidade/GetAll");
+    const response = await fetch("https://localhost:44344/api/cidade/getallcidadesestado");
     const data = await response.json();
 
     this.setState({ cidades: data, loading: false })

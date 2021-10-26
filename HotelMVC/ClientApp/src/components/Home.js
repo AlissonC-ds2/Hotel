@@ -104,7 +104,7 @@ export class Home extends Component {
     }
     const container = {
       height: '500px',
-      width: '1200px',
+      width: '1100px',
     }
 
 

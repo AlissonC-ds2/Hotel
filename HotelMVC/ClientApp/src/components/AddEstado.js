@@ -52,11 +52,11 @@ export class AddEstado extends Component {
 
     if (this.state.estado.id) {
       const response1 = fetch('https://localhost:44344/api/estado' + this.state.estado.id, { method: 'PUT', body: data });
-      //this.props.history.push('/fetch-Estado');
+      this.props.history.push('/fetch-Estado');
     }
     else {
       const response2 = fetch('https://localhost:44344/api/estado', { method: 'POST', body: data });
-      //this.props.history.push('/fetch-Estado');
+      this.props.history.push('/fetch-Estado');
     }
   }
 
@@ -81,7 +81,7 @@ export class AddEstado extends Component {
       { value: 1, label: 'AL' },
       { value: 2, label: 'AP' },
       { value: 3, label: 'AM' },
-      { value: 4, label: 'BH' },
+      { value: 4, label: 'BA' },
       { value: 5, label: 'CE' },
       { value: 6, label: 'DF' },
       { value: 7, label: 'ES' },

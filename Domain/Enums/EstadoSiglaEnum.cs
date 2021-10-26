@@ -17,7 +17,7 @@ namespace Hotel.Domain.Enums
     AP = 2,
     [Description("AM")]
     AM = 3,
-    [Description("BH")]
+    [Description("BA")]
     BA = 4,
     [Description("CE")]
     CE = 5,
