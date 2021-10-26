@@ -27,12 +27,12 @@ namespace HotelPr_API.Controllers
 
 
 		[HttpPost]
-		public async Task<IActionResult> Post([FromBody] EstadoModel model)
+		public async Task<IActionResult> Post([FromForm] EstadoModel model)
 		=> await _baseController.Post<Estado, EstadoModel>(model);
 
 
 		[HttpPut]
-		public async Task<IActionResult> Put([FromBody] EstadoModel model)
+		public async Task<IActionResult> Put([FromForm] EstadoModel model)
 		=> await _baseController.Put<Estado, EstadoModel>(model);
 
 

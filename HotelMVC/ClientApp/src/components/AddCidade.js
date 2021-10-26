@@ -63,18 +63,18 @@ export class AddCidade extends Component {
 
     if (this.state.cidade.id) {
       const response1 = fetch('https://localhost:44344/api/cidade' + this.state.cidade.id, { method: 'PUT', body: data });
-      //this.props.history.push('/fetch-User');
+      this.props.history.push('/fetch-User');
     }
     else {
       const response2 = fetch('https://localhost:44344/api/cidade', { method: 'POST', body: data });
-      //this.props.history.push('/fetch-User');
+      this.props.history.push('/fetch-User');
     }
   }
 
   handleChange(event) {
     debugger;
     var cidade = this.state.cidade;
-    cidade.estadoId = parseInt(event.target.value);
+    cidade.estadoId = event.target.value;
 
     this.setState({ cidade: cidade});
   }
@@ -113,8 +113,6 @@ export class AddCidade extends Component {
           <button type="submit" className="btn btn-success" value={this.state.cidade.id}>Salvar</button>
           <button className="btn btn-danger" onClick={this.handleCancel}>Cancelar</button>
         </div>
-
-
       </form>
     );
   }

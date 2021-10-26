@@ -26,15 +26,13 @@ namespace Hotel.Infra.Data.Repositories
       EstadoDto estadoDtoAlias = null;
       Estado estadoAlias = null;
 
-
       var query = _session.QueryOver(() => estadoAlias);
-
-
 
       var lstEstado = (await query
         .SelectList(l => l
           .Select(() => estadoAlias.Id).WithAlias(() => estadoDtoAlias.Id)
           .Select(() => estadoAlias.Nome).WithAlias(() => estadoDtoAlias.Nome)
+          .Select(() => estadoAlias.Sigla).WithAlias(() => estadoDtoAlias.SiglaEnum)
         ).TransformUsing(Transformers.AliasToBean<EstadoDto>()).ListAsync<EstadoDto>()).ToList();
 
 
