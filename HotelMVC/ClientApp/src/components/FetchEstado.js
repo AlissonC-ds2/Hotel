@@ -45,78 +45,13 @@ export class FetchEstado extends Component {
 
 
   static renderEstadoTabela(estados) {
-    const body = {
-      margin: '30px',
-      background: '#ffffff',
-      color: 'red',
-    };
-
-    const table = {
-      width: '100%',
-      margin: '2.4rem',
-      background: '#20262e',
-      color: '#fff',
-      overflow: 'hidden',
-    };
-
-    //return (
-    //  <table className='table table-striped' aria-labelledby="tabelLabel" style={table}>
-    //    <thead>
-    //      <tr>
-    //        <th>Código</th>
-    //        <th>Nome</th>
-    //        <th>Sigla</th>
-    //        <th>Editar</th>
-    //        <th>Deletar</th>
-    //      </tr>
-    //    </thead>
-    //    <tbody style={body}>
-    //      {estados.map(c =>
-    //        <tr key={c.id}>
-    //          <td> {c.id} </td>
-    //          <td> {c.nome}</td>
-    //          <td> {c.sigla}</td>
-    //          <td>
-    //            <button className="btn btn-success" onClick={(id) => this.handleEdit(c.id)}>Editar</button> &nbsp;
-    //          </td>
-    //          <td>
-    //            <button className="btn btn-danger" onClick={(id) => this.handleDelete(c.id)}>Delete</button>
-    //          </td>
-
-    //        </tr>
-    //      )}
-    //    </tbody>
-    //  </table>
-
-    //);
-  }
-
-
-  render() {
-    debugger;
     const container = {
       height: '500px',
       width: '410px',
     }
 
-    let contents = this.state.loading
-      ? <p><em> Carregando... </em> </p>
-      : FetchEstado.renderEstadoTabela(this.state.estados);
-
-
     return (
       <Form>
-        <div>
-          <h1 id="tableLabel">Estados</h1>
-          <p>Tela de listagem de Estados</p>
-
-          <p>
-            <Link to="/add-estado"><button className="btn btn-success">Cadastrar Estado</button></Link>
-          </p>
-
-          {contents}
-
-        </div>
         <div
           className="ag-theme-balham"
           style={container}
@@ -124,12 +59,37 @@ export class FetchEstado extends Component {
           <AgGridReact
             pagination={true}
             // rowData retorna os dados do grid
-            rowData={this.state.estados}>
+            rowData={estados}>
             <AgGridColumn field="nome" sortable={true}></AgGridColumn>
             <AgGridColumn field="sigla" sortable={true}></AgGridColumn>
           </AgGridReact>
         </div>
       </Form>
+
+    );
+  }
+
+
+  render() {
+
+    let contents = this.state.loading
+      ? <p><em> Carregando... </em> </p>
+      : FetchEstado.renderEstadoTabela(this.state.estados);
+
+
+    return (
+      <div>
+        <h1 id="tableLabel">Estados</h1>
+        <p>Tela de listagem de Estados</p>
+
+        <p>
+          <Link to="/add-estado"><button className="btn btn-success">Cadastrar Estado</button></Link>
+        </p>
+
+        {contents}
+
+      </div>
+
 
     );
   }

@@ -1,6 +1,11 @@
 ﻿import { Button } from "bootstrap";
 import React, { Component } from "react"
+import { Form, Field } from 'react-advanced-form'
 import { Link } from 'react-router-dom'
+import { AgGridColumn, AgGridReact } from 'ag-grid-react';
+
+import 'ag-grid-community/dist/styles/ag-grid.css';
+import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 
 
 export class FetchCidade extends Component {
@@ -40,49 +45,40 @@ export class FetchCidade extends Component {
 
 
   static renderCidadeTabela(cidades) {
-    const body = {
-      margin: '30px',
-      background: '#ffffff',
-      color: 'red',
-    };
 
-    const table = {
-      width: '100%',
-      margin: '2.4rem',
-      background: '#20262e',
-      color: '#fff',
-      overflow: 'hidden',
-    };
-
+    const container = {
+      height: '500px',
+      width: '410px',
+    }
 
     return (
-      <table className='table table-striped' aria-labelledby="tabelLabel" style={table}>
-        <thead>
-          <tr>
-            <th>Código</th>
-            <th>Nome</th>
-            <th>Estado</th>
-            <th>Editar</th>
-            <th>Deletar</th>
-          </tr>
-        </thead>
-        <tbody style={body}>
-          {cidades.map(c =>
-            <tr key={c.id}>
-              <td> {c.id} </td>
-              <td> {c.nome}</td>
-              <td> {c.estadoNome}</td>
-              <td>
-                <button className="btn btn-success" onClick={(id) => this.handleEdit(c.id)}>Editar</button> &nbsp;
-              </td>
-              <td>
-                <button className="btn btn-danger" onClick={(id) => this.handleDelete(c.id)}>Delete</button>
-              </td>
-
-            </tr>
-          )}
-        </tbody>
-      </table>
+      <Form>
+        <div>
+          <div
+            className="ag-theme-balham"
+            style={container}
+          >
+            <AgGridReact
+              pagination={true}
+              // rowData retorna os dados do grid
+              rowData={cidades}>
+              <AgGridColumn field="nome" sortable={true}></AgGridColumn>
+              <AgGridColumn field="estadoNome" sortable={true}></AgGridColumn>
+            </AgGridReact>
+          </div>
+        </div>
+        <div>
+          <p>
+            <Link to="/add-cidade"><button className="btn btn-success">Cadastrar Cidade</button></Link>
+          </p>
+          <p>
+            <button className="btn btn-success" onClick={(id) => this.handleEdit(cidades.map(x => x.id))}>Editar</button> &nbsp;
+          </p>
+          <p>
+            <button className="btn btn-danger" onClick={(id) => this.handleDelete(cidades.map(x => x.id))}>Delete</button>
+          </p>
+        </div>
+      </Form>
     );
   }
 
@@ -97,10 +93,6 @@ export class FetchCidade extends Component {
       <div>
         <h1 id="tableLabel">Cidades</h1>
         <p>Tela de listagem de Cidades</p>
-
-        <p>
-          <Link to="/add-cidade"><button className="btn btn-success">Cadastrar Cidade</button></Link>
-        </p>
 
         {contents}
 
