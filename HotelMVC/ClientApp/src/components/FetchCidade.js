@@ -54,6 +54,17 @@ export class FetchCidade extends Component {
     return (
       <Form>
         <div>
+          <p>
+            <Link to="/add-cidade"><button className="btn btn-success">Cadastrar Cidade</button></Link>
+          </p>
+          {/*<p>*/}
+          {/*  <button className="btn btn-success" onClick={(id) => this.handleEdit(cidades.map(x => x.id))}>Editar</button> &nbsp;*/}
+          {/*</p>*/}
+          {/*<p>*/}
+          {/*  <button className="btn btn-danger" onClick={(id) => this.handleDelete(cidades.map(x => x.id))}>Delete</button>*/}
+          {/*</p>*/}
+        </div>
+        <div>
           <div
             className="ag-theme-balham"
             style={container}
@@ -67,17 +78,7 @@ export class FetchCidade extends Component {
             </AgGridReact>
           </div>
         </div>
-        <div>
-          <p>
-            <Link to="/add-cidade"><button className="btn btn-success">Cadastrar Cidade</button></Link>
-          </p>
-          <p>
-            <button className="btn btn-success" onClick={(id) => this.handleEdit(cidades.map(x => x.id))}>Editar</button> &nbsp;
-          </p>
-          <p>
-            <button className="btn btn-danger" onClick={(id) => this.handleDelete(cidades.map(x => x.id))}>Delete</button>
-          </p>
-        </div>
+        
       </Form>
     );
   }
