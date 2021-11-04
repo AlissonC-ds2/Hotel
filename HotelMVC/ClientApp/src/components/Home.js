@@ -2,12 +2,14 @@ import React, { Component } from "react";
 import { Form, Field } from 'react-advanced-form'
 import { Input, Button, Select } from 'react-advanced-form-addons'
 import { AgGridColumn, AgGridReact } from 'ag-grid-react';
+import axios from 'axios'
 
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 
 
 let estadoId = 0;
+let cidadeId = 0;
 
 export class Cidade {
   constructor() {
@@ -27,22 +29,23 @@ export class Estado {
 export class Home extends Component {
   static displayName = "Climas";
 
-
   constructor(props) {
     super(props);
-    this.state = { clima: [], loading: true, estados: [new Estado], cidades: [new Cidade] }
+    this.state = { clima: [], loading: true, estados: [new Estado], estados2: [new Estado], cidades: [new Cidade], cidades2: [new Cidade] }
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleChang2 = this.handleChang2.bind(this);
   }
-
   componentDidMount() {
     //this.populaClimaData();
     fetch('https://localhost:44344/api/estado/getall')
       .then(response => response.json())
       .then(data => {
-        this.setState({ estados: data });
+        this.setState({ estados: data, estados2: data });
       });
   }
+
+  
 
   handleChange = ({
     event,
@@ -66,6 +69,35 @@ export class Home extends Component {
           this.setState({ cidades: data });
         });
     }
+  }
+
+  handleChang2 = ({
+    event,
+    nextValue,
+    prevValue,
+    fieldProps,
+    fields,
+    form
+  }) => {
+    debugger;
+    let abc = this.state.estados2;
+
+    estadoId = parseInt(nextValue);
+
+    this.setState({ abc: abc });
+
+    if (estadoId != 0) {
+      fetch('https://localhost:44344/api/cidade/' + estadoId)
+        .then(response => response.json())
+        .then(data => {
+          this.setState({ cidades2: data });
+        });
+    }
+  }
+
+  handleChangeCidade = ({ nextValue }) => {
+    debugger;
+    cidadeId = parseInt(nextValue);;
   }
 
   static renderCidadeTabela(cidades) {
@@ -125,7 +157,7 @@ export class Home extends Component {
             </Select>
           </div>
           <div style={combobox}>
-            <Select name="cidade" label="Cidade">
+            <Select name="cidade" label="Cidade" onChange={this.handleChangeCidade}>
               <option selected>Selecione uma Cidade</option>
               {this.state.cidades.map(x =>
                 <option key={x.id} value={x.id}>{x.nome}</option>
@@ -135,7 +167,7 @@ export class Home extends Component {
           </div>
 
           <p style={combobox}>
-            <Button style={pesquisar}>Pesquisar Climas</Button>
+            <button onClick={this.populaClimaData} style={pesquisar}>Pesquisar Climas</button>
           </p>
 
           <div
@@ -162,26 +194,26 @@ export class Home extends Component {
 
         <div style={div}>
           <div style={combobox}>
-            <Select name="estado" label="Estado" onChange={this.handleChange}>
+            <Select name="estado2" label="Estado" onChange={this.handleChang2}>
               <option selected>Selecione um Estado</option>
-              {this.state.estados.map(x =>
+              {this.state.estados2.map(x =>
                 <option key={x.id} value={x.id}>{x.nome}</option>
               )}
 
             </Select>
           </div>
           <div style={combobox}>
-            <Select name="cidade" label="Cidade">
+            <Select name="cidade2" label="Cidade" onChange={this.handleChangeCidade}>
               <option selected>Selecione uma Cidade</option>
-              {this.state.cidades.map(x =>
+              {this.state.cidades2.map(x =>
                 <option key={x.id} value={x.id}>{x.nome}</option>
               )}
 
             </Select>
           </div>
-
+         
           <p style={combobox}>
-            <Button style={pesquisar}>Pesquisar Climas</Button>
+            <button onClick={this.populaClimaData} style={pesquisar}>Pesquisar Climas</button>
           </p>
 
           <div
@@ -197,9 +229,10 @@ export class Home extends Component {
               <AgGridColumn field="Temperatura" sortable={true}></AgGridColumn>
               <AgGridColumn field="Descricao" sortable={true}></AgGridColumn>
               <AgGridColumn field="Umidade" sortable={true}></AgGridColumn>
-              <AgGridColumn field="Cidade" sortable={true}></AgGridColumn>
               <AgGridColumn field="Data" sortable={true}></AgGridColumn>
               <AgGridColumn field="TipoClima" sortable={true}></AgGridColumn>
+              <AgGridColumn field="Cidade" sortable={true}></AgGridColumn>
+              <AgGridColumn field="Sigla" sortable={true}></AgGridColumn>
 
             </AgGridReact>
           </div>
@@ -207,10 +240,10 @@ export class Home extends Component {
       </Form>
     );
   }
-
+  
   async populaClimaData() {
     debugger;
-    const response = await fetch("https://localhost:44344/api/clima/GetAll");
+    const response = await fetch('https://localhost:44344/api/clima/' + cidadeId);
     const data = await response.json();
 
     this.setState({ clima: data, loading: false })
