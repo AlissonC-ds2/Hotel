@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Form, Field } from 'react-advanced-form'
 import { Input, Button, Select } from 'react-advanced-form-addons'
 import { AgGridColumn, AgGridReact } from 'ag-grid-react';
-import axios from 'axios'
 
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
@@ -29,12 +28,14 @@ export class Estado {
 export class Home extends Component {
   static displayName = "Climas";
 
-  constructor(props) {
-    super(props);
-    this.state = { clima: [], loading: true, estados: [new Estado], estados2: [new Estado], cidades: [new Cidade], cidades2: [new Cidade] }
+  constructor() {
+    super();
+    this.state = { clima: [], clima2: [], loading: true, estados: [new Estado], estados2: [new Estado], cidades: [new Cidade], cidades2: [new Cidade] }
 
     this.handleChange = this.handleChange.bind(this);
     this.handleChang2 = this.handleChang2.bind(this);
+    this.populaClimaData = this.populaClimaData.bind(this);
+    this.populaClimaData2 = this.populaClimaData2.bind(this);
   }
   componentDidMount() {
     //this.populaClimaData();
@@ -44,8 +45,6 @@ export class Home extends Component {
         this.setState({ estados: data, estados2: data });
       });
   }
-
-  
 
   handleChange = ({
     event,
@@ -177,15 +176,16 @@ export class Home extends Component {
             <AgGridReact
               pagination={true}
               // rowData retorna os dados do grid
-              rowData={this.state.rowData}>
-              <AgGridColumn field="TemperaturaMax" sortable={true}></AgGridColumn>
-              <AgGridColumn field="TemperaturaMin" sortable={true}></AgGridColumn>
-              <AgGridColumn field="Temperatura" sortable={true}></AgGridColumn>
-              <AgGridColumn field="Descricao" sortable={true}></AgGridColumn>
-              <AgGridColumn field="Umidade" sortable={true}></AgGridColumn>
-              <AgGridColumn field="Cidade" sortable={true}></AgGridColumn>
-              <AgGridColumn field="Data" sortable={true}></AgGridColumn>
-              <AgGridColumn field="TipoClima" sortable={true}></AgGridColumn>
+              rowData={this.state.clima}>
+              <AgGridColumn field="temperaturaMaxima" sortable={true}></AgGridColumn>
+              <AgGridColumn field="temperaturaMinima" sortable={true}></AgGridColumn>
+              <AgGridColumn field="temperatura" sortable={true}></AgGridColumn>
+              <AgGridColumn field="descricao" sortable={true}></AgGridColumn>
+              <AgGridColumn field="umidade" sortable={true}></AgGridColumn>
+              <AgGridColumn field="tipoClima" sortable={true}></AgGridColumn>
+              <AgGridColumn field="data" sortable={true}></AgGridColumn>
+              <AgGridColumn field="cidadeNome" sortable={true}></AgGridColumn>
+              <AgGridColumn field="sigla" sortable={true}></AgGridColumn>
 
             </AgGridReact>
           </div>
@@ -213,7 +213,7 @@ export class Home extends Component {
           </div>
          
           <p style={combobox}>
-            <button onClick={this.populaClimaData} style={pesquisar}>Pesquisar Climas</button>
+            <button onClick={this.populaClimaData2} style={pesquisar}>Pesquisar Climas</button>
           </p>
 
           <div
@@ -223,17 +223,16 @@ export class Home extends Component {
             <AgGridReact
               pagination={true}
               // rowData retorna os dados do grid
-              rowData={this.state.rowData}>
-              <AgGridColumn field="TemperaturaMax" sortable={true}></AgGridColumn>
-              <AgGridColumn field="TemperaturaMin" sortable={true}></AgGridColumn>
-              <AgGridColumn field="Temperatura" sortable={true}></AgGridColumn>
-              <AgGridColumn field="Descricao" sortable={true}></AgGridColumn>
-              <AgGridColumn field="Umidade" sortable={true}></AgGridColumn>
-              <AgGridColumn field="Data" sortable={true}></AgGridColumn>
-              <AgGridColumn field="TipoClima" sortable={true}></AgGridColumn>
-              <AgGridColumn field="Cidade" sortable={true}></AgGridColumn>
-              <AgGridColumn field="Sigla" sortable={true}></AgGridColumn>
-
+              rowData={this.state.clima2}>
+              <AgGridColumn field="temperaturaMaxima" sortable={true}></AgGridColumn>
+              <AgGridColumn field="temperaturaMinima" sortable={true}></AgGridColumn>
+              <AgGridColumn field="temperatura" sortable={true}></AgGridColumn>
+              <AgGridColumn field="descricao" sortable={true}></AgGridColumn>
+              <AgGridColumn field="umidade" sortable={true}></AgGridColumn>
+              <AgGridColumn field="tipoClima" sortable={true}></AgGridColumn>
+              <AgGridColumn field="data" sortable={true}></AgGridColumn>
+              <AgGridColumn field="cidadeNome" sortable={true}></AgGridColumn>
+              <AgGridColumn field="sigla" sortable={true}></AgGridColumn>
             </AgGridReact>
           </div>
         </div>
@@ -246,6 +245,14 @@ export class Home extends Component {
     const response = await fetch('https://localhost:44344/api/clima/' + cidadeId);
     const data = await response.json();
 
-    this.setState({ clima: data, loading: false })
+    this.setState({ clima: data, loading: false });
+  }
+
+  async populaClimaData2() {
+    debugger;
+    const response = await fetch('https://localhost:44344/api/clima/' + cidadeId);
+    const data = await response.json();
+
+    this.setState({ clima2: data, loading: false });
   }
 }

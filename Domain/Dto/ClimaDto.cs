@@ -23,8 +23,8 @@ namespace Hotel.Domain.Dto
 		public long CidadeId { get; set; }
 		public string CidadeNome { get; set; }
 		public double PressaoAtm { get; set; }
-		public ETipoClima TipoClima { get; set; }
-		public string TipoClimaEnum => TipoClima.ToDescription();
+		public ETipoClima TipoClimaEnum { get; set; }
+		public string TipoClima => TipoClimaEnum.ToDescription();
 		public EstadoSiglaEnum SiglaEnum { get; set; }
 		public string Sigla => SiglaEnum.ToDescription();
 	}
