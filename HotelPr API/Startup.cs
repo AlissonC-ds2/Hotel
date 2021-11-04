@@ -45,6 +45,7 @@ namespace HotelPr_API
       services.AddScoped<IRepository, Repository>();
       services.AddScoped<IEstadoRepository, EstadoRepository>();
       services.AddScoped<ICidadeRepository, CidadeRepository>();
+      services.AddScoped<IClimaRepository, ClimaRepository>();
 
       services.AddTransient<BaseController>();
       //Assembly.GetExecutingAssembly().GetExportedTypes() <------ busca todos os assemblyes fora do contexto atual
