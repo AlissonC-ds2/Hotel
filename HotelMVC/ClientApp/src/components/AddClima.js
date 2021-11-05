@@ -36,9 +36,11 @@ export  class AddClima extends Component {
 
     let data = new FormData(form.innerRef);
 
-    return fetch('https://localhost:44344/api/clima', {
+    const response1 =  fetch('https://localhost:44344/api/clima', {
       method: 'POST', body: data
-    })
+    });
+
+    this.props.history.push('/');
   }
 
 
