@@ -63,11 +63,11 @@ export class AddCidade extends Component {
 
     if (this.state.cidade.id) {
       const response1 = fetch('https://localhost:44344/api/cidade' + this.state.cidade.id, { method: 'PUT', body: data });
-      this.props.history.push('/fetch-User');
+      this.props.history.push('/fetch-Cidade');
     }
     else {
       const response2 = fetch('https://localhost:44344/api/cidade', { method: 'POST', body: data });
-      this.props.history.push('/fetch-User');
+      this.props.history.push('/fetch-Cidade');
     }
   }
 

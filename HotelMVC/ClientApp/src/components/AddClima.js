@@ -32,13 +32,12 @@ export  class AddClima extends Component {
 
 
   registerUser = ({ serialized, fields, form }) => {
-
     debugger;
-    let teste = serialized;
 
+    let data = new FormData(form.innerRef);
 
-    return fetch('https://backend.dev', {
-      body: JSON.stringify(serialized)
+    return fetch('https://localhost:44344/api/clima', {
+      method: 'POST', body: data
     })
   }
 
@@ -96,83 +95,89 @@ export  class AddClima extends Component {
     ]
 
     return (
-    <Form
-      action={this.registerUser}>
+      <Form
+        action={this.registerUser}>
 
-      <div style={colunas}>
-        <Select name="estado" label="Estado" onChange={this.handleChange}>
-          <option selected>Selecione um Estado</option>
-          {this.state.estados.map(x =>
-            <option key={x.id} value={x.id}>{x.nome}</option>
-          )}
-        </Select>
-      </div>
-
-      <div style={colunas}>
-          <Select name="cidade" label="Cidade">
-            <option selected>Selecione um Cidade</option>
-          {this.state.cidades.map(x =>
-            <option key={x.id} value={x.id}>{x.nome}</option>
-          )}
-        </Select>
-      </div>
-
-      <div style={colunas}>
-        <Input
-          name="data"
-          label="Data"
-          type="date"
-          required />
-      </div>
-
-      <div style={colunas}>
-        <Input
-          name="temperatura"
-          label="Temperatura"
-          required />
-      </div>
-
-      <div style={colunas}>
-        <Input
-          name="temperaturamax"
-          label="Temperatura maxima"
-          required />
-      </div>
-      <div style={colunas}>
-        <Input
-          name="temperaturamin"
-          label="Temperatura minima"
-          required />
+        <div style={colunas}>
+          <Select name="estadoid" label="Estado" onChange={this.handleChange}>
+            <option selected>Selecione um Estado</option>
+            {this.state.estados.map(x =>
+              <option key={x.id} value={x.id}>{x.nome}</option>
+            )}
+          </Select>
         </div>
-      <div style={colunas}>
-        <Input
-          name="descricao"
-          label="Descrição"
-          required />
-      </div>
-      <div style={colunas}>
-        <Input
-          name="umidade"
-          label="Umidade"
-          required />
-      </div>
-      <div style={colunas}>
-        <Input
-          name="pressaoAtm"
-          label="Pressão Atmosférica"
-          required />
-      </div>
-      <div style={colunas}>
-        <Select name="tipoClima" label="Climas">
-          <option selected>Selecione um Clima</option>
-          {ETipoClima.map(x =>
-            <option key={x.value} value={x.value}>{x.label}</option>
-          )}
-        </Select>
-      </div>
 
-      <Button primary>Cadastrar Clima</Button>
-    </Form>
+        <div style={colunas}>
+          <Select name="cidadeid" label="Cidade">
+            <option selected>Selecione um Cidade</option>
+            {this.state.cidades.map(x =>
+              <option key={x.id} value={x.id}>{x.nome}</option>
+            )}
+          </Select>
+        </div>
+
+        <div style={colunas}>
+          <Input
+            name="data"
+            label="Data"
+            type="date"
+            required />
+        </div>
+
+        <div style={colunas}>
+          <Input
+            name="temperatura"
+            label="Temperatura"
+            required />
+        </div>
+
+        <div style={colunas}>
+          <Input
+            name="temperaturamaxima"
+            label="Temperatura maxima"
+            required />
+        </div>
+        <div style={colunas}>
+          <Input
+            name="temperaturaminima"
+            label="Temperatura minima"
+            required />
+        </div>
+        <div style={colunas}>
+          <Input
+            name="descricao"
+            label="Descrição"
+            required />
+        </div>
+        <div style={colunas}>
+          <Input
+            name="umidade"
+            label="Umidade"
+            required />
+        </div>
+        <div style={colunas}>
+          <Input
+            name="velocidade"
+            label="Velocidade"
+            required />
+        </div>
+        <div style={colunas}>
+          <Input
+            name="pressaoAtm"
+            label="Pressão Atmosférica"
+            required />
+        </div>
+        <div style={colunas}>
+          <Select name="tipoClima" label="Climas">
+            <option selected>Selecione um Clima</option>
+            {ETipoClima.map(x =>
+              <option key={x.value} value={x.value}>{x.label}</option>
+            )}
+          </Select>
+        </div>
+
+        <Button primary>Cadastrar Clima</Button>
+      </Form>
     );
   }
 }
