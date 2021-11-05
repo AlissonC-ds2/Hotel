@@ -36,11 +36,13 @@ namespace Hotel.Infra.Data.Repositories
       var lstClimas = (await query
         .SelectList(l => l
           .Select(() => climaAlias.Id).WithAlias(() => climaDtoAlias.Id)
-          .Select(() => climaAlias.TemperaturaMaxima).WithAlias(() => climaDtoAlias.TemperaturaMaxima)
-          .Select(() => climaAlias.TemperaturaMinima).WithAlias(() => climaDtoAlias.TemperaturaMinima)
-          .Select(() => climaAlias.Temperatura).WithAlias(() => climaDtoAlias.Temperatura)
+          .Select(() => climaAlias.TemperaturaMaxima).WithAlias(() => climaDtoAlias.TemperaturaMaximaDouble)
+          .Select(() => climaAlias.TemperaturaMinima).WithAlias(() => climaDtoAlias.TemperaturaMinimaDouble)
+          .Select(() => climaAlias.Temperatura).WithAlias(() => climaDtoAlias.TemperaturaDouble)
           .Select(() => climaAlias.Descricao).WithAlias(() => climaDtoAlias.Descricao)
+          .Select(() => climaAlias.Velocidade).WithAlias(() => climaDtoAlias.VelocidadeDouble)
           .Select(() => climaAlias.Umidade).WithAlias(() => climaDtoAlias.Umidade)
+          .Select(() => climaAlias.PressaoAtm).WithAlias(() => climaDtoAlias.PressaoAtmDouble)
           .Select(() => climaAlias.Data).WithAlias(() => climaDtoAlias.DataDateTime)
           .Select(() => climaAlias.TipoClima).WithAlias(() => climaDtoAlias.TipoClimaEnum)
           .Select(() => cidadeAlias.Id).WithAlias(() => climaDtoAlias.CidadeId)

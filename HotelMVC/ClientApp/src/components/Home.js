@@ -182,10 +182,10 @@ export class Home extends Component {
               <AgGridColumn field="temperatura" sortable={true}></AgGridColumn>
               <AgGridColumn field="descricao" sortable={true}></AgGridColumn>
               <AgGridColumn field="umidade" sortable={true}></AgGridColumn>
+              <AgGridColumn field="velocidade" sortable={true}></AgGridColumn>
+              <AgGridColumn field="pressaoAtm" sortable={true}></AgGridColumn>
               <AgGridColumn field="tipoClima" sortable={true}></AgGridColumn>
               <AgGridColumn field="data" sortable={true}></AgGridColumn>
-              <AgGridColumn field="cidadeNome" sortable={true}></AgGridColumn>
-              <AgGridColumn field="sigla" sortable={true}></AgGridColumn>
 
             </AgGridReact>
           </div>
@@ -229,10 +229,10 @@ export class Home extends Component {
               <AgGridColumn field="temperatura" sortable={true}></AgGridColumn>
               <AgGridColumn field="descricao" sortable={true}></AgGridColumn>
               <AgGridColumn field="umidade" sortable={true}></AgGridColumn>
+              <AgGridColumn field="velocidade" sortable={true}></AgGridColumn>
+              <AgGridColumn field="pressaoAtm" sortable={true}></AgGridColumn>
               <AgGridColumn field="tipoClima" sortable={true}></AgGridColumn>
               <AgGridColumn field="data" sortable={true}></AgGridColumn>
-              <AgGridColumn field="cidadeNome" sortable={true}></AgGridColumn>
-              <AgGridColumn field="sigla" sortable={true}></AgGridColumn>
             </AgGridReact>
           </div>
         </div>

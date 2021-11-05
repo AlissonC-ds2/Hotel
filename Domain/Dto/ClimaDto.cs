@@ -13,16 +13,21 @@ namespace Hotel.Domain.Dto
 		public long Id { get; set; }
 		public DateTime DataDateTime { get; set; }
 		public string Data => DataDateTime.ToString("dd/MM/yyyy");
-		public double Temperatura { get; set; }
-		public double TemperaturaMaxima { get; set; }
-		public double TemperaturaMinima { get; set; }
+		public double TemperaturaDouble { get; set; }
+		public string Temperatura => TemperaturaDouble + " ºC";
+		public double TemperaturaMaximaDouble { get; set; }
+		public string TemperaturaMaxima => TemperaturaMaximaDouble + " ºC";
+		public double TemperaturaMinimaDouble { get; set; }
+		public string TemperaturaMinima => TemperaturaMinimaDouble + " ºC";
 		public string Descricao { get; set; }
 		public string Umidade { get; set; }
-		public double Velocidade { get; set; }
+		public double VelocidadeDouble { get; set; }
+		public string Velocidade => VelocidadeDouble + "km/h";
 		public long EstadoId { get; set; }
 		public long CidadeId { get; set; }
 		public string CidadeNome { get; set; }
-		public double PressaoAtm { get; set; }
+		public double PressaoAtmDouble { get; set; }
+		public string PressaoAtm => PressaoAtmDouble + " Atm";
 		public ETipoClima TipoClimaEnum { get; set; }
 		public string TipoClima => TipoClimaEnum.ToDescription();
 		public EstadoSiglaEnum SiglaEnum { get; set; }
