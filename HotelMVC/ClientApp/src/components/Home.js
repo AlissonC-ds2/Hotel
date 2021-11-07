@@ -127,7 +127,7 @@ export class Home extends Component {
       width: '200px',
       height: '46px',
       display: 'inline-block',
-      background: 'lightblue'
+      background: 'darkslateblue'
     }
     const div = {
       display: 'inline-block',
@@ -166,7 +166,7 @@ export class Home extends Component {
           </div>
 
           <p style={combobox}>
-            <button onClick={this.populaClimaData} style={pesquisar}>Pesquisar Climas</button>
+            <button onClick={this.populaClimaData} style={pesquisar} className="text-white">Pesquisar Climas</button>
           </p>
 
           <div
@@ -213,7 +213,7 @@ export class Home extends Component {
           </div>
          
           <p style={combobox}>
-            <button onClick={this.populaClimaData2} style={pesquisar}>Pesquisar Climas</button>
+            <button onClick={this.populaClimaData2} style={pesquisar} className="text-white">Pesquisar Climas</button>
           </p>
 
           <div
