@@ -9,6 +9,7 @@ import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 
 let estadoId = 0;
 let cidadeId = 0;
+let cidade2Id = 0;
 
 export class Cidade {
   constructor() {
@@ -97,6 +98,11 @@ export class Home extends Component {
   handleChangeCidade = ({ nextValue }) => {
     debugger;
     cidadeId = parseInt(nextValue);;
+  }
+
+  handleChangeCidade2 = ({ nextValue }) => {
+    debugger;
+    cidade2Id = parseInt(nextValue);;
   }
 
   static renderCidadeTabela(cidades) {
@@ -203,7 +209,7 @@ export class Home extends Component {
             </Select>
           </div>
           <div style={combobox}>
-            <Select name="cidade2" label="Cidade" onChange={this.handleChangeCidade}>
+            <Select name="cidade2" label="Cidade" onChange={this.handleChangeCidade2}>
               <option selected>Selecione uma Cidade</option>
               {this.state.cidades2.map(x =>
                 <option key={x.id} value={x.id}>{x.nome}</option>
@@ -250,7 +256,7 @@ export class Home extends Component {
 
   async populaClimaData2() {
     debugger;
-    const response = await fetch('https://localhost:44344/api/clima/' + cidadeId);
+    const response = await fetch('https://localhost:44344/api/clima/' + cidade2Id);
     const data = await response.json();
 
     this.setState({ clima2: data, loading: false });
