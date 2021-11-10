@@ -12,7 +12,6 @@ export class Estado {
 
 export class AddEstado extends Component {
   constructor(props) {
-    debugger;
     super(props);
     this.state = { title: "", estado: new Estado(), loading: true };
 
@@ -22,7 +21,6 @@ export class AddEstado extends Component {
   }
 
   componentDidMount() {
-    debugger;
     this.populaEstadoData();
     fetch('https://localhost:44344/api/estado/getall')
       .then(response => response.json())
@@ -44,7 +42,6 @@ export class AddEstado extends Component {
   }
 
   handleSave(event) {
-    debugger;
     event.preventDefault();
 
     const data = new FormData(event.target);
@@ -67,7 +64,6 @@ export class AddEstado extends Component {
   }
 
   handleChange(event) {
-    debugger;
     let estado = this.state.estado;
     estado.sigla = parseInt(event.target.value);
 
@@ -112,14 +108,14 @@ export class AddEstado extends Component {
           <input type="hidden" name="id" value={this.state.estado.id} />
         </div>
         <div className="form-group row">
-          <label for="inputNome" class="col-sm-1 control-label">Nome</label>
+          <label htmlFor="inputNome" className="col-sm-1 control-label">Nome</label>
           <div className="col-md-6">
             <input className="form-control" placeholder="Nome" type="text" name="nome" defaultValue={this.state.estado.nome} required />
           </div>
         </div>
         <div className="form-group row">
           <select form="carform" name="sigla" onChange={this.handleChange}>
-            <option selected>Selecione uma Sigla</option>
+            <option>Selecione uma Sigla</option>
             {ESigla.map(x =>
               <option key={x.value} value={x.value}>{x.label}</option>
             )}

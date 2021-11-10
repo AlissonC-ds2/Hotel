@@ -16,7 +16,6 @@ export class Cliente {
 
 export class AddCliente extends Component {
   constructor(props) {
-    debugger;
     super(props);
     this.state = { title: "", cliente: new Cliente(), loading: true};
     this.inicialize();
@@ -27,8 +26,6 @@ export class AddCliente extends Component {
 
 
   async inicialize() {
-    debugger;
-
     const search = this.props.location.search; // returns the URL query String
     const params = new URLSearchParams(search);
     let id = parseInt(params.get('id'));
@@ -61,7 +58,6 @@ export class AddCliente extends Component {
   }
 
   handleSave(event) {
-    debugger;
     event.preventDefault();
 
     const data = new FormData(event.target);
@@ -138,7 +134,6 @@ export class AddCliente extends Component {
 
 
   async populaClienteData() {
-    debugger;
     const response = await fetch("https://localhost:44344/api/cliente/GetAll");
     const data = await response.json();
 

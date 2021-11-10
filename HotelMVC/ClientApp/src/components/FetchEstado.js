@@ -24,7 +24,6 @@ export class FetchEstado extends Component {
 
 
   static handleEdit(id) {
-    debugger;
     window.location.href = `/add-estado?id=${id}`;
   }
 
@@ -96,7 +95,6 @@ export class FetchEstado extends Component {
 
 
   async populaEstadoData() {
-    debugger;
     const response = await fetch("https://localhost:44344/api/estado/GetAll");
     const data = await response.json();
 

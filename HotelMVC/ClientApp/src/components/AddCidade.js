@@ -20,7 +20,6 @@ export class Estado {
 
 export class AddCidade extends Component {
   constructor(props) {
-    debugger;
     super(props);
     this.state = { title: "", cidade: new Cidade(), loading: true, estados: [new Estado] };
 
@@ -31,7 +30,6 @@ export class AddCidade extends Component {
 
 
   componentDidMount() {
-    debugger;
     this.populaCidadeData();
     fetch('https://localhost:44344/api/estado/getall')
       .then(response => response.json())
@@ -41,7 +39,6 @@ export class AddCidade extends Component {
   }
 
   render() {
-    debugger;
     let contents = this.renderCreateForm();
 
     return (
@@ -55,7 +52,6 @@ export class AddCidade extends Component {
 
 
   handleSave(event) {
-    debugger;
     event.preventDefault();
 
     const data = new FormData(event.target);
@@ -72,7 +68,6 @@ export class AddCidade extends Component {
   }
 
   handleChange(event) {
-    debugger;
     var cidade = this.state.cidade;
     cidade.estadoId = event.target.value;
 
@@ -93,7 +88,7 @@ export class AddCidade extends Component {
         </div>
 
         <div className="form-group row">
-          <label for="inputNome" class="col-sm-1 control-label">Nome</label>
+          <label for="inputNome" className="col-sm-1 control-label">Nome</label>
           <div className="col-md-6">
             <input className="form-control" placeholder="Nome" type="text" name="nome" defaultValue={this.state.cidade.nome} required />
           </div>
@@ -101,7 +96,7 @@ export class AddCidade extends Component {
 
         <div className="form-group row">
           <select form="carform" onChange={this.handleChange}>
-            <option selected>Selecione um estado</option>
+            <option>Selecione um estado</option>
             {this.state.estados.map(x =>
               <option key={x.id} value={x.id}>{x.nome}</option>
             )}

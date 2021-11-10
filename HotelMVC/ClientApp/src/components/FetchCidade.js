@@ -24,7 +24,6 @@ export class FetchCidade extends Component {
 
 
   static handleEdit(id) {
-    debugger;
     window.location.href = `/add-cidade?id=${id}`;
   }
 
@@ -103,7 +102,6 @@ export class FetchCidade extends Component {
 
 
   async populaCidadeData() {
-    debugger;
     const response = await fetch("https://localhost:44344/api/cidade/getallcidadesestado");
     const data = await response.json();
 

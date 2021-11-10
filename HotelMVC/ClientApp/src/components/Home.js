@@ -55,7 +55,6 @@ export class Home extends Component {
     fields,
     form
   }) => {
-    debugger;
     let abc = this.state.estados;
 
     estadoId = parseInt(nextValue);
@@ -79,7 +78,6 @@ export class Home extends Component {
     fields,
     form
   }) => {
-    debugger;
     let abc = this.state.estados2;
 
     estadoId = parseInt(nextValue);
@@ -96,12 +94,10 @@ export class Home extends Component {
   }
 
   handleChangeCidade = ({ nextValue }) => {
-    debugger;
     cidadeId = parseInt(nextValue);;
   }
 
   handleChangeCidade2 = ({ nextValue }) => {
-    debugger;
     cidade2Id = parseInt(nextValue);;
   }
 
@@ -122,7 +118,6 @@ export class Home extends Component {
   }
 
   render() {
-    debugger;
     const combobox = {
       width: '370px',
       display: 'inline-block',
@@ -144,8 +139,6 @@ export class Home extends Component {
       width: '1100px',
     }
 
-
-    debugger;
     return (
       <Form>
         <div style={div}>
@@ -154,7 +147,7 @@ export class Home extends Component {
 
           <div style={combobox}>
             <Select name="estado" label="Estado" onChange={this.handleChange}>
-              <option selected>Selecione um Estado</option>
+              <option>Selecione um Estado</option>
               {this.state.estados.map(x =>
                 <option key={x.id} value={x.id}>{x.nome}</option>
               )}
@@ -163,7 +156,7 @@ export class Home extends Component {
           </div>
           <div style={combobox}>
             <Select name="cidade" label="Cidade" onChange={this.handleChangeCidade}>
-              <option selected>Selecione uma Cidade</option>
+              <option>Selecione uma Cidade</option>
               {this.state.cidades.map(x =>
                 <option key={x.id} value={x.id}>{x.nome}</option>
               )}
@@ -201,7 +194,7 @@ export class Home extends Component {
         <div style={div}>
           <div style={combobox}>
             <Select name="estado2" label="Estado" onChange={this.handleChang2}>
-              <option selected>Selecione um Estado</option>
+              <option>Selecione um Estado</option>
               {this.state.estados2.map(x =>
                 <option key={x.id} value={x.id}>{x.nome}</option>
               )}
@@ -210,7 +203,7 @@ export class Home extends Component {
           </div>
           <div style={combobox}>
             <Select name="cidade2" label="Cidade" onChange={this.handleChangeCidade2}>
-              <option selected>Selecione uma Cidade</option>
+              <option>Selecione uma Cidade</option>
               {this.state.cidades2.map(x =>
                 <option key={x.id} value={x.id}>{x.nome}</option>
               )}
@@ -247,7 +240,6 @@ export class Home extends Component {
   }
   
   async populaClimaData() {
-    debugger;
     const response = await fetch('https://localhost:44344/api/clima/' + cidadeId);
     const data = await response.json();
 
@@ -255,7 +247,6 @@ export class Home extends Component {
   }
 
   async populaClimaData2() {
-    debugger;
     const response = await fetch('https://localhost:44344/api/clima/' + cidade2Id);
     const data = await response.json();
 

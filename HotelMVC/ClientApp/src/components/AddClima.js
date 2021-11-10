@@ -23,7 +23,6 @@ let estadoId = 0;
 export  class AddClima extends Component {
 
   constructor(props) {
-    debugger;
     super(props);
     this.state = { clima: [], loading: true, estados: [new Estado], cidades: [new Cidade] }
 
@@ -32,8 +31,6 @@ export  class AddClima extends Component {
 
 
   registerUser = ({ serialized, fields, form }) => {
-    debugger;
-
     let data = new FormData(form.innerRef);
 
     const response1 =  fetch('https://localhost:44344/api/clima', {
@@ -61,7 +58,6 @@ export  class AddClima extends Component {
     fields,
     form
   }) => {
-    debugger;
     let abc = this.state.estados;
         
 
@@ -102,7 +98,7 @@ export  class AddClima extends Component {
 
         <div style={colunas}>
           <Select name="estadoid" label="Estado" onChange={this.handleChange}>
-            <option selected>Selecione um Estado</option>
+            <option>Selecione um Estado</option>
             {this.state.estados.map(x =>
               <option key={x.id} value={x.id}>{x.nome}</option>
             )}
@@ -111,7 +107,7 @@ export  class AddClima extends Component {
 
         <div style={colunas}>
           <Select name="cidadeid" label="Cidade">
-            <option selected>Selecione um Cidade</option>
+            <option>Selecione um Cidade</option>
             {this.state.cidades.map(x =>
               <option key={x.id} value={x.id}>{x.nome}</option>
             )}
@@ -171,7 +167,7 @@ export  class AddClima extends Component {
         </div>
         <div style={colunas}>
           <Select name="tipoClima" label="Climas">
-            <option selected>Selecione um Clima</option>
+            <option>Selecione um Clima</option>
             {ETipoClima.map(x =>
               <option key={x.value} value={x.value}>{x.label}</option>
             )}
