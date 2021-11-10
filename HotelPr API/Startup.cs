@@ -59,7 +59,7 @@ namespace HotelPr_API
       services.AddControllers();
       services.AddSwaggerGen(c =>
       {
-        c.SwaggerDoc("v1", new OpenApiInfo { Title = "HotelPr_API", Version = "v1" });
+        c.SwaggerDoc("v1", new OpenApiInfo { Title = "Clima_API", Version = "v1" });
       });
 
       services.AddCors(c =>
@@ -76,7 +76,7 @@ namespace HotelPr_API
       {
         app.UseDeveloperExceptionPage();
         app.UseSwagger();
-        app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "HotelPr_API v1"));
+        app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Clima_API v1"));
       }
 
       app.UseHttpsRedirection();

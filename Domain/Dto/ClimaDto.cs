@@ -20,7 +20,8 @@ namespace Hotel.Domain.Dto
 		public double TemperaturaMinimaDouble { get; set; }
 		public string TemperaturaMinima => TemperaturaMinimaDouble + " ºC";
 		public string Descricao { get; set; }
-		public string Umidade { get; set; }
+		public string UmidadePorcent { get; set; }
+		public string Umidade => UmidadePorcent + "%";
 		public double VelocidadeDouble { get; set; }
 		public string Velocidade => VelocidadeDouble + "km/h";
 		public long EstadoId { get; set; }

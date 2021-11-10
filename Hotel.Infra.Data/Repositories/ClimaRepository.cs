@@ -41,7 +41,7 @@ namespace Hotel.Infra.Data.Repositories
           .Select(() => climaAlias.Temperatura).WithAlias(() => climaDtoAlias.TemperaturaDouble)
           .Select(() => climaAlias.Descricao).WithAlias(() => climaDtoAlias.Descricao)
           .Select(() => climaAlias.Velocidade).WithAlias(() => climaDtoAlias.VelocidadeDouble)
-          .Select(() => climaAlias.Umidade).WithAlias(() => climaDtoAlias.Umidade)
+          .Select(() => climaAlias.Umidade).WithAlias(() => climaDtoAlias.UmidadePorcent)
           .Select(() => climaAlias.PressaoAtm).WithAlias(() => climaDtoAlias.PressaoAtmDouble)
           .Select(() => climaAlias.Data).WithAlias(() => climaDtoAlias.DataDateTime)
           .Select(() => climaAlias.TipoClima).WithAlias(() => climaDtoAlias.TipoClimaEnum)
