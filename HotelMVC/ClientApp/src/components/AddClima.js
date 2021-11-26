@@ -151,19 +151,19 @@ export  class AddClima extends Component {
           <Input
             name="umidade"
             label="Umidade"
-            required />
+            />
         </div>
         <div style={colunas}>
           <Input
             name="velocidade"
             label="Velocidade"
-            required />
+            />
         </div>
         <div style={colunas}>
           <Input
             name="pressaoAtm"
             label="Pressão Atmosférica"
-            required />
+            />
         </div>
         <div style={colunas}>
           <Select name="tipoClima" label="Climas">
