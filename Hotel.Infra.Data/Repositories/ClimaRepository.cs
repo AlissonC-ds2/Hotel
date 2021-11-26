@@ -34,15 +34,13 @@ namespace Hotel.Infra.Data.Repositories
         .Where(() => cidadeAlias.Id == cidadeId);
 
       var lstClimas = (await query
+        .OrderBy(x => x.Data).Asc
         .SelectList(l => l
           .Select(() => climaAlias.Id).WithAlias(() => climaDtoAlias.Id)
           .Select(() => climaAlias.TemperaturaMaxima).WithAlias(() => climaDtoAlias.TemperaturaMaximaDouble)
           .Select(() => climaAlias.TemperaturaMinima).WithAlias(() => climaDtoAlias.TemperaturaMinimaDouble)
           .Select(() => climaAlias.Temperatura).WithAlias(() => climaDtoAlias.TemperaturaDouble)
           .Select(() => climaAlias.Descricao).WithAlias(() => climaDtoAlias.Descricao)
-          .Select(() => climaAlias.Velocidade).WithAlias(() => climaDtoAlias.VelocidadeDouble)
-          .Select(() => climaAlias.Umidade).WithAlias(() => climaDtoAlias.UmidadePorcent)
-          .Select(() => climaAlias.PressaoAtm).WithAlias(() => climaDtoAlias.PressaoAtmDouble)
           .Select(() => climaAlias.Data).WithAlias(() => climaDtoAlias.DataDateTime)
           .Select(() => climaAlias.TipoClima).WithAlias(() => climaDtoAlias.TipoClimaEnum)
           .Select(() => cidadeAlias.Id).WithAlias(() => climaDtoAlias.CidadeId)
