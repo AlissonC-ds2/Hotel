@@ -27,7 +27,7 @@ namespace Hotel.Infra.Data.Mappings
       Map(x => x.TipoClima).CustomType<ETipoClima>();
 
 
-      References(x => x.Cidade);
+      References(x => x.Cidade).Not.Nullable();
     }
   }
 }

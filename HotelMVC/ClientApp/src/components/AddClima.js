@@ -29,7 +29,7 @@ export  class AddClima extends Component {
     this.handleChange = this.handleChange.bind(this);
   };
 
-
+  // função chamada quando clicamos no Cadastrar Clima chama essa função
   registerUser = ({ serialized, fields, form }) => {
     let data = new FormData(form.innerRef);
 
@@ -40,9 +40,8 @@ export  class AddClima extends Component {
     this.props.history.push('/');
   }
 
-
-  componentDidMount() {
-    /*this.populaClimaData();*/
+  //quando monta o componente ele chama essa função
+  componentDidMount() {  
     fetch('https://localhost:44344/api/estado/getall')
       .then(response => response.json())
       .then(data => {
@@ -50,6 +49,7 @@ export  class AddClima extends Component {
       });
   }
 
+  // onChange comboBox
   handleChange = ({
     event,
     nextValue,
@@ -59,7 +59,6 @@ export  class AddClima extends Component {
     form
   }) => {
     let abc = this.state.estados;
-        
 
     estadoId = parseInt(nextValue);
 

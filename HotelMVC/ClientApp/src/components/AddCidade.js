@@ -1,6 +1,6 @@
 ﻿import React, { Component, useEffect, useState } from "react";
 
-
+//componentes
 
 export class Cidade {
   constructor() {
@@ -17,7 +17,6 @@ export class Estado {
   }
 }
 
-
 export class AddCidade extends Component {
   constructor(props) {
     super(props);
@@ -30,12 +29,13 @@ export class AddCidade extends Component {
 
 
   componentDidMount() {
-    this.populaCidadeData();
+    this.state = { title: "Cadastrar", cidade: new Cidade(), loading: false };
     fetch('https://localhost:44344/api/estado/getall')
       .then(response => response.json())
       .then(data => {
         this.setState({ estados: data });
-    });
+      });
+
   }
 
   render() {
@@ -57,14 +57,9 @@ export class AddCidade extends Component {
     const data = new FormData(event.target);
     data.append("estadoId", this.state.cidade.estadoId);
 
-    if (this.state.cidade.id) {
-      const response1 = fetch('https://localhost:44344/api/cidade' + this.state.cidade.id, { method: 'PUT', body: data });
-      this.props.history.push('/fetch-Cidade');
-    }
-    else {
-      const response2 = fetch('https://localhost:44344/api/cidade', { method: 'POST', body: data });
-      this.props.history.push('/fetch-Cidade');
-    }
+    const response2 = fetch('https://localhost:44344/api/cidade', { method: 'POST', body: data });
+    this.props.history.push('/fetch-Cidade');
+
   }
 
   handleChange(event) {
@@ -111,23 +106,4 @@ export class AddCidade extends Component {
       </form>
     );
   }
-
-
-  async populaCidadeData() {
-    const search = this.props.location.search; // returns the URL query String
-    const params = new URLSearchParams(search);
-    let id = parseInt(params.get('id'));
-
-
-    if (id > 0) {
-      const response = await fetch('https://localhost:44344/api/cidade/' + id);
-      const data = await response.json();
-
-      this.setState({ title: "Edição", cidade: data, loading: false });
-
-    }
-
-    this.state = { title: "Cadastrar", cidade: new Cidade(), loading: false};
-  }
-
 }
