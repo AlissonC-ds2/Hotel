@@ -18,11 +18,11 @@ namespace Hotel.Domain.Model
 		public double TemperaturaMinima { get; set; }
 		public string Descricao { get; set; }
 		public string Umidade { get; set; }
-		public double Velocidade { get; set; }
+		public double? Velocidade { get; set; }
 		public long CidadeId { get; set; }
 		public long EstadoId { get; set; }
 		public string CidadeNome { get; set; }
-		public double PressaoAtm { get; set; }
+		public double? PressaoAtm { get; set; }
 		public ETipoClima TipoClima { get; set; }
 	}
 }

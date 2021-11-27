@@ -21,9 +21,9 @@ namespace Hotel.Infra.Data.Mappings
       Map(x => x.TemperaturaMaxima).Not.Nullable().Length(12);
       Map(x => x.TemperaturaMinima).Not.Nullable().Length(12);
       Map(x => x.Descricao).Not.Nullable().Length(100);
-      Map(x => x.Umidade).Not.Nullable().Length(6);
-      Map(x => x.Velocidade).Not.Nullable().Length(12);
-      Map(x => x.PressaoAtm).Not.Nullable().Length(12);
+      Map(x => x.Umidade).Length(6);
+      Map(x => x.Velocidade).Length(12);
+      Map(x => x.PressaoAtm).Length(12);
       Map(x => x.TipoClima).CustomType<ETipoClima>();
 
 
