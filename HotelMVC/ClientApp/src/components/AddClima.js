@@ -62,12 +62,7 @@ export class AddClima extends Component {
   handleChange = ({
     nextValue
   }) => {
-    let lstEstados = this.state.estados;
-
     estadoId = parseInt(nextValue);
-
-    this.setState({ lstEstados: lstEstados });
-
 
     if (estadoId != 0) {
       fetch('https://localhost:44344/api/cidade/' + estadoId)
