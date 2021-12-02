@@ -73,7 +73,6 @@ export class AddClima extends Component {
     }
   }
 
-
   render() {  
     const colunas = {
       display: 'inline-block',

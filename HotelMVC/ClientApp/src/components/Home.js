@@ -11,6 +11,7 @@ let estadoId = 0;
 let cidadeId = 0;
 let cidade2Id = 0;
 
+// classes para serem utilizadas na construção da tela, para serem matipuladas conforme a requisição 
 export class Cidade {
   constructor() {
     this.id = 0;
@@ -26,18 +27,25 @@ export class Estado {
   }
 }
 
+//craindo uma classe que pode ser exportada e extendendo do react para ser um componente 
 export class Home extends Component {
   static displayName = "Climas";
 
   constructor() {
     super();
+    //estado da tela
+    //conforme é feito ações na tela, o estado dessas propriedades a baixo vai mudar 
     this.state = { clima: [], clima2: [], loading: true, estados: [new Estado], estados2: [new Estado], cidades: [new Cidade], cidades2: [new Cidade] }
 
+    //funções
+    // faço uma ligação da função com minha classe (vinculo) 
     this.handleChange = this.handleChange.bind(this);
     this.handleChang2 = this.handleChang2.bind(this);
     this.populaClimaData = this.populaClimaData.bind(this);
     this.populaClimaData2 = this.populaClimaData2.bind(this);
   }
+
+  //função chamada apos minha tela já tiver renderizada"desenhada"
   componentDidMount() {
     fetch('https://localhost:44344/api/estado/getall')
       .then(response => response.json())
@@ -47,18 +55,9 @@ export class Home extends Component {
   }
 
   handleChange = ({
-    event,
     nextValue,
-    prevValue,
-    fieldProps,
-    fields,
-    form
   }) => {
-    let abc = this.state.estados;
-
     estadoId = parseInt(nextValue);
-
-    this.setState({ abc: abc });
 
     if (estadoId != 0) {
       fetch('https://localhost:44344/api/cidade/' + estadoId)
@@ -70,18 +69,9 @@ export class Home extends Component {
   }
 
   handleChang2 = ({
-    event,
-    nextValue,
-    prevValue,
-    fieldProps,
-    fields,
-    form
+    nextValue
   }) => {
-    let abc = this.state.estados2;
-
     estadoId = parseInt(nextValue);
-
-    this.setState({ abc: abc });
 
     if (estadoId != 0) {
       fetch('https://localhost:44344/api/cidade/' + estadoId)
