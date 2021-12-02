@@ -22,27 +22,6 @@ export class FetchEstado extends Component {
     this.populaEstadoData();
   }
 
-
-  static handleEdit(id) {
-    window.location.href = `/add-estado?id=${id}`;
-  }
-
-
-  static handleDelete(id) {
-    if (!window.confirm("você deseja excluir o cidade?")) {
-      return;
-    }
-
-    fetch("api/cliente" + id, { method: 'delete' })
-      .then(json => {
-        window.location.href = "fetch-estado";
-        alert('Deletado da base com sucesso.')
-      });
-
-  }
-
-
-
   static renderEstadoTabela(estados) {
     const container = {
       height: '500px',

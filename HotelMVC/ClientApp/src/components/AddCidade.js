@@ -27,7 +27,7 @@ export class AddCidade extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-
+  //quando monta o componente ele chama essa função
   componentDidMount() {
     this.state = { title: "Cadastrar", cidade: new Cidade(), loading: false };
     fetch('https://localhost:44344/api/estado/getall')

@@ -20,8 +20,10 @@ export class AddEstado extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  //quando monta o componente ele chama essa função
   componentDidMount() {
-    this.populaEstadoData();
+    this.state = { title: "Cadastrar", estado: new Estado(), loading: false };
+
     fetch('https://localhost:44344/api/estado/getall')
       .then(response => response.json())
       .then(data => {
@@ -47,14 +49,9 @@ export class AddEstado extends Component {
     const data = new FormData(event.target);
     data.append("sigla", this.state.estado.sigla);
 
-    if (this.state.estado.id) {
-      const response1 = fetch('https://localhost:44344/api/estado' + this.state.estado.id, { method: 'PUT', body: data });
-      this.props.history.push('/fetch-Estado');
-    }
-    else {
-      const response2 = fetch('https://localhost:44344/api/estado', { method: 'POST', body: data });
-      this.props.history.push('/fetch-Estado');
-    }
+    const response2 = fetch('https://localhost:44344/api/estado', { method: 'POST', body: data });
+    this.props.history.push('/fetch-Estado');
+
   }
 
 
@@ -130,24 +127,4 @@ export class AddEstado extends Component {
       </form>
     );
   }
-
-
-
-  async populaEstadoData() {
-    const search = this.props.location.search; // returns the URL query String
-    const params = new URLSearchParams(search);
-    let id = parseInt(params.get('id'));
-
-
-    if (id > 0) {
-      const response = await fetch('https://localhost:44344/api/estado/' + id);
-      const data = await response.json();
-
-      this.setState({ title: "Edição", estado: data, loading: false });
-
-    }
-
-    this.state = { title: "Cadastrar", estado: new Estado(), loading: false };
-  }
-
 }
