@@ -2,7 +2,7 @@
 import { Form, Field } from 'react-advanced-form'
 import { Input, Button, Select } from 'react-advanced-form-addons'
 
-
+// classes para serem utilizadas na construção da tela, para serem matipuladas conforme a requisição 
 export class Cidade {
   constructor() {
     this.id = 0;
@@ -20,50 +20,53 @@ export class Estado {
 
 let estadoId = 0;
 
-export  class AddClima extends Component {
-
-  constructor(props) {
-    super(props);
+//craindo uma classe que pode ser exportada e extendendo do react para ser um componente 
+export class AddClima extends Component {
+  constructor() {
+    super();
+    //estado da tela
+    //conforme é feito ações na tela, o estado dessas propriedades a baixo vai mudar 
     this.state = { clima: [], loading: true, estados: [new Estado], cidades: [new Cidade] }
 
-    //funções 
+    //funções
+    // faço uma ligação da função com minha classe (vinculo) 
     this.handleChange = this.handleChange.bind(this);
+    this.registerUser = this.registerUser.bind(this);
   };
 
   // função chamada quando clicamos no Cadastrar Clima
-  registerUser = ({ serialized, fields, form }) => {
+  registerUser = ({ form }) => {
+    //recebo o form que esta no render e manda no corpo da requisição o form com as propriedades
+    // new FormData pega o form que vem por parametro, com os propriedades e transforma em FormData, que seria meus dados preenchidos 
     let data = new FormData(form.innerRef);
 
-    const response1 =  fetch('https://localhost:44344/api/clima', {
+    fetch('https://localhost:44344/api/clima', {
       method: 'POST', body: data
     });
 
+    //depois de salvo ele volta para do clima
     this.props.history.push('/');
   }
 
-  //quando monta o componente ele chama essa função
+  //função chamada apos minha tela já tiver renderizada"desenhada"
   componentDidMount() {  
     fetch('https://localhost:44344/api/estado/getall')
       .then(response => response.json())
       .then(data => {
+        //setendo o estado da minha classe, na propriedade estado(alimentando a lista de estado que iniciei vazia no contrutor da classe)
         this.setState({ estados: data });
       });
   }
 
   // onChange comboBox
   handleChange = ({
-    event,
-    nextValue,
-    prevValue,
-    fieldProps,
-    fields,
-    form
+    nextValue
   }) => {
-    let abc = this.state.estados;
+    let lstEstados = this.state.estados;
 
     estadoId = parseInt(nextValue);
 
-    this.setState({ abc: abc });
+    this.setState({ lstEstados: lstEstados });
 
 
     if (estadoId != 0) {
@@ -135,6 +138,7 @@ export  class AddClima extends Component {
             label="Temperatura maxima"
             required />
         </div>
+
         <div style={colunas}>
           <Input
             name="temperaturaminima"
