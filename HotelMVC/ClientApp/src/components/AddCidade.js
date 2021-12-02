@@ -19,15 +19,17 @@ export class Estado {
 
 export class AddCidade extends Component {
   constructor(props) {
+    //super classe, seria uma classe de herança 
     super(props);
     this.state = { title: "", cidade: new Cidade(), loading: true, estados: [new Estado] };
 
+    //funções
     this.handleSave = this.handleSave.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
-
+  //inicia quando a tela já esta renderizada 
   componentDidMount() {
     this.state = { title: "Cadastrar", cidade: new Cidade(), loading: false };
     fetch('https://localhost:44344/api/estado/getall')

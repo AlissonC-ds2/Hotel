@@ -26,10 +26,11 @@ export  class AddClima extends Component {
     super(props);
     this.state = { clima: [], loading: true, estados: [new Estado], cidades: [new Cidade] }
 
+    //funções 
     this.handleChange = this.handleChange.bind(this);
   };
 
-  // função chamada quando clicamos no Cadastrar Clima chama essa função
+  // função chamada quando clicamos no Cadastrar Clima
   registerUser = ({ serialized, fields, form }) => {
     let data = new FormData(form.innerRef);
 
