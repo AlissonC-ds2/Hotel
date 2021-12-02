@@ -39,7 +39,6 @@ export class Home extends Component {
     this.populaClimaData2 = this.populaClimaData2.bind(this);
   }
   componentDidMount() {
-    //this.populaClimaData();
     fetch('https://localhost:44344/api/estado/getall')
       .then(response => response.json())
       .then(data => {
@@ -94,28 +93,13 @@ export class Home extends Component {
   }
 
   handleChangeCidade = ({ nextValue }) => {
-    cidadeId = parseInt(nextValue);;
+    cidadeId = parseInt(nextValue);
   }
 
   handleChangeCidade2 = ({ nextValue }) => {
-    cidade2Id = parseInt(nextValue);;
+    cidade2Id = parseInt(nextValue);
   }
 
-  static renderCidadeTabela(cidades) {
-    const body = {
-      margin: '30px',
-      background: '#ffffff',
-      color: 'red',
-    };
-
-    const table = {
-      width: '100%',
-      margin: '2.4rem',
-      background: '#20262e',
-      color: '#fff',
-      overflow: 'hidden',
-    };
-  }
 
   render() {
     const combobox = {
