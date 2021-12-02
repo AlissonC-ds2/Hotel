@@ -37,7 +37,7 @@ export class AddClima extends Component {
   // função chamada quando clicamos no Cadastrar Clima
   registerUser = ({ form }) => {
     //recebo o form que esta no render e manda no corpo da requisição o form com as propriedades
-    // new FormData pega o form que vem por parametro, com os propriedades e transforma em FormData, que seria meus dados preenchidos 
+    // new FormData pega o form que vem por parametro, com as propriedades e transforma em FormData, que seria meus dados preenchidos 
     let data = new FormData(form.innerRef);
 
     fetch('https://localhost:44344/api/clima', {
